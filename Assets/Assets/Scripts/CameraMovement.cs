@@ -18,15 +18,13 @@ public class CameraMovement : MonoBehaviour {
     }
     public void StartMovingForward(bool opposite)
     {
-      //  Debug.Log("ehf");
         startMoving = true;
 
-        //direction = (!opposite) ? target.forward : -target.forward;
+        direction = (!opposite) ? target.forward : -target.forward;
         direction *= speed;
     }
     public void StartMovingSides(bool opposite)
     {
-       // Debug.Log("ehr");
         startMoving = true;
 
         direction = (!opposite) ? target.right : -target.right;
@@ -34,7 +32,6 @@ public class CameraMovement : MonoBehaviour {
     }
     public void StopMoving()
     {
-       // Debug.Log("sooo");
         startMoving = false;
     }
 }
