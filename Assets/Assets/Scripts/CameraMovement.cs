@@ -15,6 +15,14 @@ public class CameraMovement : MonoBehaviour {
         {
             target.position += direction;
         }
+        else
+        {
+            if (Input.GetMouseButton(1))
+            {
+                float h = 7 * Input.GetAxis("Mouse X");
+                transform.Rotate(0, h, 0);
+            }
+        }
     }
     public void StartMovingForward(bool opposite)
     {
