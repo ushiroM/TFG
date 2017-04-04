@@ -7,29 +7,35 @@ public class ConstruccionMovimiento : MonoBehaviour {
     private Transform edificio;
     private bool colocado;
     private EdificioColocable edificioColocable;
-	// Use this for initialization
-	void Start () {
-		
-	}
+    // Use this for initialization
 	
 	// Update is called once per frame
 	void Update () {
         if(edificio != null && !colocado)
         {
+            edificioColocable = edificio.GetComponent<EdificioColocable>();
             Vector3 raton = Input.mousePosition;
             raton = new Vector3(raton.x, raton.y, transform.position.y);
             Vector3 p = GetComponent<Camera>().ScreenToWorldPoint(raton);
             edificio.position = new Vector3(p.x,0,p.z);
-       
+
+            
+
+            if (Input.GetMouseButtonDown(0))
+            {
+                if (IsLegalPosition())
+                {
+                    colocado = true;
+                }
+            }
+
         }
-        if (Input.GetMouseButtonDown(0))
-            if(IsLegalPosition())
-                colocado = true;
-		
+       
 	}
 
     bool IsLegalPosition()
     {
+        Debug.Log("entro");
         if (edificioColocable.colliders.Count > 0)
             return false;
         return true;
@@ -38,7 +44,7 @@ public class ConstruccionMovimiento : MonoBehaviour {
     public void SetItem(GameObject b)
     {
         colocado = false;
-        edificio = ((GameObject)Instantiate(b)).transform;
+        edificio = Instantiate(b).transform;
         edificioColocable = edificio.GetComponent<EdificioColocable>();
     }
 }
