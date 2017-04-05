@@ -7,6 +7,7 @@ public class ConstruccionMovimiento : MonoBehaviour {
     private Transform edificio;
     private bool colocado;
     private EdificioColocable edificioColocable;
+   
     // Use this for initialization
 	
 	// Update is called once per frame
@@ -19,8 +20,6 @@ public class ConstruccionMovimiento : MonoBehaviour {
             Vector3 p = GetComponent<Camera>().ScreenToWorldPoint(raton);
             edificio.position = new Vector3(p.x,0,p.z);
 
-            
-
             if (Input.GetMouseButtonDown(0))
             {
                 if (IsLegalPosition())
@@ -28,6 +27,7 @@ public class ConstruccionMovimiento : MonoBehaviour {
                     colocado = true;
                 }
             }
+           
 
         }
        
@@ -35,7 +35,6 @@ public class ConstruccionMovimiento : MonoBehaviour {
 
     bool IsLegalPosition()
     {
-        Debug.Log("entro");
         if (edificioColocable.colliders.Count > 0)
             return false;
         return true;
