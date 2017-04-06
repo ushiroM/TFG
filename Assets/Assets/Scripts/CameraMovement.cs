@@ -9,35 +9,27 @@ public class CameraMovement : MonoBehaviour {
     public bool startMoving;
     Vector3 direction;
     private Vector3 posicionAerea;
-    private bool cambiar = false;
+    private bool cambiar;
     private CamaraPrimeraPersona pp;
+    private ConstruccionMovimiento construccionMovimiento;
+    private ConstruccionManager construccionManager;
+    private Collider collider;
 
-    void Awake()
+    void Start()
     {
+        cambiar = false;
         pp = GetComponent<CamaraPrimeraPersona>();
+        construccionMovimiento = GetComponentInChildren<ConstruccionMovimiento>();
+        construccionManager = GetComponentInChildren<ConstruccionManager>();
+        collider = GetComponent<BoxCollider>();
+        collider.enabled = false;
     }
 
     void Update()
     {
         if (cambiar)
         {
-            posicionAerea = transform.position;
-            if (transform.position.y > 0)
-            {
-                if (transform.position.y < 80)
-                    if (transform.GetChild(0).rotation.x > 0)
-                        transform.GetChild(0).Rotate(transform.GetChild(0).rotation.x - 5, transform.GetChild(0).rotation.y, transform.GetChild(0).rotation.z);
-
-                transform.position = new Vector3(transform.position.x, transform.position.y - 5, transform.position.z);
-            }
-            else
-            {
-                transform.GetChild(0).Rotate(0, transform.GetChild(0).rotation.y, transform.GetChild(0).rotation.z);
-                transform.position = new Vector3(transform.position.x, 2, transform.position.z);
-                cambiar = false;
-                pp.enabled = true;
-                enabled = false;
-            }
+           cambiarPrimeraPersona();
         }
         else if (startMoving)
         {
@@ -73,5 +65,28 @@ public class CameraMovement : MonoBehaviour {
     public void StopMoving()
     {
         startMoving = false;
+    }
+    public void cambiarPrimeraPersona()
+    {
+        if (transform.position.y > 0)
+        {
+            if (transform.position.y < 80)
+                if (transform.GetChild(0).rotation.x > 0)
+                    transform.GetChild(0).Rotate(transform.GetChild(0).rotation.x - 5, transform.GetChild(0).rotation.y, transform.GetChild(0).rotation.z);
+
+            transform.position = new Vector3(transform.position.x, transform.position.y - 5, transform.position.z);
+        }
+        else
+        {
+            transform.GetChild(0).rotation = Quaternion.identity;
+            transform.position = new Vector3(transform.position.x, 2, transform.position.z);
+            cambiar = false;
+            pp.enabled = true;
+            collider.enabled = true;
+            construccionMovimiento.enabled = false;
+            construccionManager.enabled = false;
+            enabled = false;
+        }
+      
     }
 }
