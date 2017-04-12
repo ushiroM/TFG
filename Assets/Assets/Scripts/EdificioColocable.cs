@@ -5,6 +5,7 @@ using System.Collections.Generic;
 public class EdificioColocable : MonoBehaviour {
     [HideInInspector]public List<Collider> colliders = new List<Collider>();
 
+
     public void OnTriggerEnter(Collider c)
     {
         if (c.tag == "Edificio")

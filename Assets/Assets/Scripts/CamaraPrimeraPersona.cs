@@ -18,6 +18,7 @@ public class CamaraPrimeraPersona : MonoBehaviour {
     private ConstruccionMovimiento construccionMovimiento;
     private ConstruccionManager construccionManager;
     private Collider collider;
+    private Quaternion targetRotation;
     // Use this for initialization
     void Start () {
         cambiar = false;
@@ -35,6 +36,7 @@ public class CamaraPrimeraPersona : MonoBehaviour {
             rotacion();
             if (Input.GetKeyDown(KeyCode.V))
             {
+                targetRotation = transform.GetChild(0).rotation * Quaternion.AngleAxis(60, Vector3.right);
                 cambiar = true;
                
             }
@@ -97,16 +99,12 @@ public class CamaraPrimeraPersona : MonoBehaviour {
     {
         if (transform.position.y < 200)
         {
-            if (transform.GetChild(0).rotation.x < 60f)
-            {
-                transform.GetChild(0).Rotate(transform.GetChild(0).rotation.x + 10f, 0, 0);
-            }
+            transform.GetChild(0).rotation = Quaternion.Lerp(transform.GetChild(0).rotation, targetRotation, 10 * 2f * Time.deltaTime);
 
             transform.position = new Vector3(transform.position.x, transform.position.y + 5, transform.position.z);
         }
         else
         {
-            //transform.GetChild(0).Rotate(60f, 0, 0);
             transform.position = new Vector3(transform.position.x, 200, transform.position.z);
             cambiar = false;
             collider.enabled = false;
