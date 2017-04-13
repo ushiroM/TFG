@@ -7,9 +7,7 @@ public class ConstruccionMovimiento : MonoBehaviour {
     private Transform edificio;
     private bool colocado;
     private EdificioColocable edificioColocable;
-    private RaycastHit hit;
-    private bool posicionado = false;
-
+   
     // Use this for initialization
 
     // Update is called once per frame
@@ -20,19 +18,7 @@ public class ConstruccionMovimiento : MonoBehaviour {
             Vector3 raton = Input.mousePosition;
             raton = new Vector3(raton.x, raton.y, transform.position.y);
             Vector3 p = GetComponent<Camera>().ScreenToWorldPoint(raton);
-            edificio.position = new Vector3(p.x,0,p.z);
-
-          
-            if (Physics.Raycast(edificio.position, -edificio.up, out hit, 10f))
-            {
-                posicionado = true;
-            }
-            else
-            {
-                posicionado = false;
-                edificio.position -= new Vector3(edificio.position.x, edificio.position.y - 5, edificio.position.z);
-            }
-                
+            edificio.position = new Vector3(p.x,-0.9f,p.z);
 
             if (Input.GetMouseButtonDown(0))
             {
@@ -41,8 +27,6 @@ public class ConstruccionMovimiento : MonoBehaviour {
                     colocado = true;
                 }
             }
-          
-
 
         }
        
@@ -50,7 +34,7 @@ public class ConstruccionMovimiento : MonoBehaviour {
 
     bool IsLegalPosition()
     {
-        if (edificioColocable.colliders.Count > 0 && !posicionado)
+        if (edificioColocable.colliders.Count > 0)
             return false;
         return true;
     }

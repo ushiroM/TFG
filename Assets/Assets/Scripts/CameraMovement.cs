@@ -79,7 +79,7 @@ public class CameraMovement : MonoBehaviour {
         else
         {
             transform.GetChild(0).rotation = Quaternion.identity;
-            transform.position = new Vector3(transform.position.x, 2, transform.position.z);
+            transform.position = new Vector3(transform.position.x, 0.5f, transform.position.z);
             cambiar = false;
             pp.enabled = true;
             collider.enabled = true;

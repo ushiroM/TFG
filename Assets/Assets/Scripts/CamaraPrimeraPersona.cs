@@ -32,11 +32,13 @@ public class CamaraPrimeraPersona : MonoBehaviour {
 	void Update () {
         if (!cambiar)
         {
+           
             movimiento();
             rotacion();
             if (Input.GetKeyDown(KeyCode.V))
             {
                 targetRotation = transform.GetChild(0).rotation * Quaternion.AngleAxis(60, Vector3.right);
+              
                 cambiar = true;
                
             }
@@ -97,14 +99,17 @@ public class CamaraPrimeraPersona : MonoBehaviour {
     }
     public void cambiarVistaAerea()
     {
+
         if (transform.position.y < 200)
         {
+            
             transform.GetChild(0).rotation = Quaternion.Lerp(transform.GetChild(0).rotation, targetRotation, 10 * 2f * Time.deltaTime);
 
             transform.position = new Vector3(transform.position.x, transform.position.y + 5, transform.position.z);
         }
         else
         {
+            transform.rotation = Quaternion.Euler(new Vector3(0, 0, 0));
             transform.position = new Vector3(transform.position.x, 200, transform.position.z);
             cambiar = false;
             collider.enabled = false;
