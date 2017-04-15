@@ -47,14 +47,32 @@ public class GameManager : MonoBehaviour {
             mostrandoDefensas();
         else if (ocultarCasas)
             ocultandoViviendas();
+        else if (ocultarJuegos)
+            ocultandoEntretenimiento();
+        else if (ocultarDioses)
+            ocultandoTemplos();
+        else if (ocultarMurallas)
+            ocultandoDefensas();
     }
     public void mostrarViviendas()
     {
         if (!viviendas.activeSelf)
         {
-            entretenimiento.SetActive(false);
-            templos.SetActive(false);
-            defensas.SetActive(false);
+            if (entretenimiento.activeSelf)
+            {
+                entretenimiento.SetActive(false);
+                entretenimiento.transform.position = new Vector2(entretenimiento.transform.position.x, Yiniciale);
+            }
+            else if (templos.activeSelf)
+            {
+                templos.SetActive(false);
+                templos.transform.position = new Vector2(templos.transform.position.x, Yinicialt);
+            }
+            else if (defensas.activeSelf)
+            {
+                defensas.SetActive(false);
+                defensas.transform.position = new Vector2(defensas.transform.position.x, Yiniciald);
+            }
             viviendas.SetActive(true);
             Yinicialc = viviendas.transform.position.y;
             mostrarCasas = true;
@@ -81,12 +99,32 @@ public class GameManager : MonoBehaviour {
     }
     public void mostrarEntretenimiento()
     {
-        templos.SetActive(false);
-        defensas.SetActive(false);
-        viviendas.SetActive(false);
-        entretenimiento.SetActive(true);
-        Yiniciale = entretenimiento.transform.position.y;
-        mostrarJuegos = true;
+        if (!entretenimiento.activeSelf)
+        {
+            if (viviendas.activeSelf)
+            {
+                viviendas.SetActive(false);
+                viviendas.transform.position = new Vector2(viviendas.transform.position.x, Yinicialc);
+            }
+            else if (templos.activeSelf)
+            {
+                templos.SetActive(false);
+                templos.transform.position = new Vector2(templos.transform.position.x, Yinicialt);
+            }
+            else if (defensas.activeSelf)
+            {
+                defensas.SetActive(false);
+                defensas.transform.position = new Vector2(defensas.transform.position.x, Yiniciald);
+            }
+            entretenimiento.SetActive(true);
+            Yiniciale = entretenimiento.transform.position.y;
+            mostrarJuegos = true;
+        }
+        else
+            ocultarJuegos = true;
+      
+       
+        
     }
     private void mostrandoEntretenimiento()
     {
@@ -95,14 +133,41 @@ public class GameManager : MonoBehaviour {
         else
             mostrarJuegos = false;
     }
+    private void ocultandoEntretenimiento()
+    {
+        if (entretenimiento.transform.position.y > Yiniciale)
+            entretenimiento.transform.position = new Vector2(entretenimiento.transform.position.x, entretenimiento.transform.position.y - 5);
+        else
+        {
+            ocultarJuegos = false;
+            entretenimiento.SetActive(false);
+        }
+    }
     public void mostrarTemplos()
     {
-        entretenimiento.SetActive(false);
-        viviendas.SetActive(false);
-        defensas.SetActive(false);
-        templos.SetActive(true);
-        Yinicialt = templos.transform.position.y;
-        mostrarDioses = true;
+        if (!templos.activeSelf)
+        {
+            if (viviendas.activeSelf)
+            {
+                viviendas.SetActive(false);
+                viviendas.transform.position = new Vector2(viviendas.transform.position.x, Yinicialc);
+            }
+            else if (entretenimiento.activeSelf)
+            {
+                entretenimiento.SetActive(false);
+                entretenimiento.transform.position = new Vector2(templos.transform.position.x, Yiniciale);
+            }
+            else if (defensas.activeSelf)
+            {
+                defensas.SetActive(false);
+                defensas.transform.position = new Vector2(defensas.transform.position.x, Yiniciald);
+            }
+            templos.SetActive(true);
+            Yinicialt = templos.transform.position.y;
+            mostrarDioses = true;
+        }
+        else
+            ocultarDioses = true;
     }
     private void mostrandoTemplos()
     {
@@ -111,14 +176,42 @@ public class GameManager : MonoBehaviour {
         else
             mostrarDioses = false;
     }
+    private void ocultandoTemplos()
+    {
+        if (templos.transform.position.y > Yinicialt)
+            templos.transform.position = new Vector2(templos.transform.position.x, templos.transform.position.y - 5);
+        else
+        {
+            ocultarDioses = false;
+            templos.SetActive(false);
+        }
+    }
     public void mostrarDefensas()
     {
-        viviendas.SetActive(false);
-        entretenimiento.SetActive(false);
-        templos.SetActive(false);
-        defensas.SetActive(true);
-        Yiniciald = defensas.transform.position.y;
-        mostrarMurallas = true;
+        if (!defensas.activeSelf)
+        {
+
+            if (viviendas.activeSelf)
+            {
+                viviendas.SetActive(false);
+                viviendas.transform.position = new Vector2(viviendas.transform.position.x, Yinicialc);
+            }
+            else if (entretenimiento.activeSelf)
+            {
+                entretenimiento.SetActive(false);
+                entretenimiento.transform.position = new Vector2(templos.transform.position.x, Yiniciale);
+            }
+            else if (templos.activeSelf)
+            {
+                templos.SetActive(false);
+                templos.transform.position = new Vector2(templos.transform.position.x, Yinicialt);
+            }
+            defensas.SetActive(true);
+            Yiniciald = defensas.transform.position.y;
+            mostrarMurallas = true;
+        }
+        else
+            ocultarMurallas = true;
     }
     private void mostrandoDefensas()
     {
@@ -127,11 +220,22 @@ public class GameManager : MonoBehaviour {
         else
             mostrarMurallas = false;
     }
+    private void ocultandoDefensas()
+    {
+        if (defensas.transform.position.y > Yiniciald)
+            defensas.transform.position = new Vector2(defensas.transform.position.x, defensas.transform.position.y - 5);
+        else
+        {
+            ocultarMurallas = false;
+            defensas.SetActive(false);
+        }
+    }
     public void spawnDomus()
     {
-        for (int i = 0; i < edificios.Length; i++)
-        {
-            construccionMovimiento.SetItem(edificios[i]);
-        }
+       construccionMovimiento.SetItem(edificios[0]);
+    }
+    public void spawnArco()
+    {
+       construccionMovimiento.SetItem(edificios[1]);
     }
 }

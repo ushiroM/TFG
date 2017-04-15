@@ -14,6 +14,7 @@ public class CameraMovement : MonoBehaviour {
     private ConstruccionMovimiento construccionMovimiento;
     private ConstruccionManager construccionManager;
     private Collider collider;
+    private GameObject canvas;
 
     void Start()
     {
@@ -23,6 +24,7 @@ public class CameraMovement : MonoBehaviour {
         construccionManager = GetComponentInChildren<ConstruccionManager>();
         collider = GetComponent<BoxCollider>();
         collider.enabled = false;
+        canvas = GameObject.FindGameObjectWithTag("Canvas");
     }
 
     void Update()
@@ -84,7 +86,7 @@ public class CameraMovement : MonoBehaviour {
             pp.enabled = true;
             collider.enabled = true;
             construccionMovimiento.enabled = false;
-            construccionManager.enabled = false;
+            canvas.SetActive(false);
             enabled = false;
         }
       

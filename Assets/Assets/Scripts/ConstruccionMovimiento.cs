@@ -18,7 +18,7 @@ public class ConstruccionMovimiento : MonoBehaviour {
             Vector3 raton = Input.mousePosition;
             raton = new Vector3(raton.x, raton.y, transform.position.y);
             Vector3 p = GetComponent<Camera>().ScreenToWorldPoint(raton);
-            edificio.position = new Vector3(p.x,-0.9f,p.z);
+            edificio.position = new Vector3(p.x,edificio.position.y,p.z);
 
             if (Input.GetMouseButtonDown(0))
             {

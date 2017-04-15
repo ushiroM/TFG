@@ -1,0 +1,413 @@
+fileFormatVersion: 2
+guid: a7511381809b0504d8656b51fd4c17b1
+timeCreated: 1492248852
+licenseType: Free
+ModelImporter:
+  serializedVersion: 19
+  fileIDToRecycleName:
+    100000: //RootNode
+    100002: Base columna
+    100004: Base columna001
+    100006: Base columna002
+    100008: Base columna003
+    100010: Base columna004
+    100012: Base columna005
+    100014: Base columna006
+    100016: Base columna007
+    100018: Base columna008
+    100020: Base columna009
+    100022: Box001
+    100024: Box002
+    100026: Box003
+    100028: Box004
+    100030: Box005
+    100032: Box006
+    100034: Box007
+    100036: Box008
+    100038: Box009
+    100040: Box010
+    100042: Box011
+    100044: Box012
+    100046: Box013
+    100048: Box014
+    100050: Box015
+    100052: Box016
+    100054: Box017
+    100056: Columna
+    100058: Columna001
+    100060: Columna002
+    100062: Columna003
+    100064: Columna004
+    100066: Columna005
+    100068: Columna006
+    100070: Columna007
+    100072: Cylinder001
+    100074: Cylinder002
+    100076: Cylinder003
+    100078: Cylinder004
+    100080: Cylinder005
+    100082: Cylinder006
+    100084: Cylinder007
+    100086: Cylinder008
+    100088: Plane002
+    100090: Plane003
+    100092: Plane004
+    100094: Plane005
+    100096: Plane006
+    100098: Plane007
+    100100: Plane008
+    100102: Plane009
+    100104: Torus001
+    100106: Torus002
+    100108: Torus003
+    100110: Torus004
+    100112: Torus005
+    100114: Torus006
+    100116: Torus007
+    100118: Torus008
+    100120: Torus009
+    100122: Torus010
+    100124: Torus011
+    100126: Torus012
+    100128: Torus013
+    100130: Torus014
+    100132: Torus015
+    100134: Torus016
+    400000: //RootNode
+    400002: Base columna
+    400004: Base columna001
+    400006: Base columna002
+    400008: Base columna003
+    400010: Base columna004
+    400012: Base columna005
+    400014: Base columna006
+    400016: Base columna007
+    400018: Base columna008
+    400020: Base columna009
+    400022: Box001
+    400024: Box002
+    400026: Box003
+    400028: Box004
+    400030: Box005
+    400032: Box006
+    400034: Box007
+    400036: Box008
+    400038: Box009
+    400040: Box010
+    400042: Box011
+    400044: Box012
+    400046: Box013
+    400048: Box014
+    400050: Box015
+    400052: Box016
+    400054: Box017
+    400056: Columna
+    400058: Columna001
+    400060: Columna002
+    400062: Columna003
+    400064: Columna004
+    400066: Columna005
+    400068: Columna006
+    400070: Columna007
+    400072: Cylinder001
+    400074: Cylinder002
+    400076: Cylinder003
+    400078: Cylinder004
+    400080: Cylinder005
+    400082: Cylinder006
+    400084: Cylinder007
+    400086: Cylinder008
+    400088: Plane002
+    400090: Plane003
+    400092: Plane004
+    400094: Plane005
+    400096: Plane006
+    400098: Plane007
+    400100: Plane008
+    400102: Plane009
+    400104: Torus001
+    400106: Torus002
+    400108: Torus003
+    400110: Torus004
+    400112: Torus005
+    400114: Torus006
+    400116: Torus007
+    400118: Torus008
+    400120: Torus009
+    400122: Torus010
+    400124: Torus011
+    400126: Torus012
+    400128: Torus013
+    400130: Torus014
+    400132: Torus015
+    400134: Torus016
+    2300000: Base columna
+    2300002: Base columna001
+    2300004: Base columna002
+    2300006: Base columna003
+    2300008: Base columna004
+    2300010: Base columna005
+    2300012: Base columna006
+    2300014: Base columna007
+    2300016: Base columna008
+    2300018: Base columna009
+    2300020: Box001
+    2300022: Box002
+    2300024: Box003
+    2300026: Box004
+    2300028: Box005
+    2300030: Box006
+    2300032: Box007
+    2300034: Box008
+    2300036: Box009
+    2300038: Box010
+    2300040: Box011
+    2300042: Box012
+    2300044: Box013
+    2300046: Box014
+    2300048: Box015
+    2300050: Box016
+    2300052: Box017
+    2300054: Columna
+    2300056: Columna001
+    2300058: Columna002
+    2300060: Columna003
+    2300062: Columna004
+    2300064: Columna005
+    2300066: Columna006
+    2300068: Columna007
+    2300070: Cylinder001
+    2300072: Cylinder002
+    2300074: Cylinder003
+    2300076: Cylinder004
+    2300078: Cylinder005
+    2300080: Cylinder006
+    2300082: Cylinder007
+    2300084: Cylinder008
+    2300086: Plane002
+    2300088: Plane003
+    2300090: Plane004
+    2300092: Plane005
+    2300094: Plane006
+    2300096: Plane007
+    2300098: Plane008
+    2300100: Plane009
+    2300102: Torus001
+    2300104: Torus002
+    2300106: Torus003
+    2300108: Torus004
+    2300110: Torus005
+    2300112: Torus006
+    2300114: Torus007
+    2300116: Torus008
+    2300118: Torus009
+    2300120: Torus010
+    2300122: Torus011
+    2300124: Torus012
+    2300126: Torus013
+    2300128: Torus014
+    2300130: Torus015
+    2300132: Torus016
+    3300000: Base columna
+    3300002: Base columna001
+    3300004: Base columna002
+    3300006: Base columna003
+    3300008: Base columna004
+    3300010: Base columna005
+    3300012: Base columna006
+    3300014: Base columna007
+    3300016: Base columna008
+    3300018: Base columna009
+    3300020: Box001
+    3300022: Box002
+    3300024: Box003
+    3300026: Box004
+    3300028: Box005
+    3300030: Box006
+    3300032: Box007
+    3300034: Box008
+    3300036: Box009
+    3300038: Box010
+    3300040: Box011
+    3300042: Box012
+    3300044: Box013
+    3300046: Box014
+    3300048: Box015
+    3300050: Box016
+    3300052: Box017
+    3300054: Columna
+    3300056: Columna001
+    3300058: Columna002
+    3300060: Columna003
+    3300062: Columna004
+    3300064: Columna005
+    3300066: Columna006
+    3300068: Columna007
+    3300070: Cylinder001
+    3300072: Cylinder002
+    3300074: Cylinder003
+    3300076: Cylinder004
+    3300078: Cylinder005
+    3300080: Cylinder006
+    3300082: Cylinder007
+    3300084: Cylinder008
+    3300086: Plane002
+    3300088: Plane003
+    3300090: Plane004
+    3300092: Plane005
+    3300094: Plane006
+    3300096: Plane007
+    3300098: Plane008
+    3300100: Plane009
+    3300102: Torus001
+    3300104: Torus002
+    3300106: Torus003
+    3300108: Torus004
+    3300110: Torus005
+    3300112: Torus006
+    3300114: Torus007
+    3300116: Torus008
+    3300118: Torus009
+    3300120: Torus010
+    3300122: Torus011
+    3300124: Torus012
+    3300126: Torus013
+    3300128: Torus014
+    3300130: Torus015
+    3300132: Torus016
+    4300000: Base columna
+    4300002: Columna
+    4300004: Torus001
+    4300006: Torus002
+    4300008: Box001
+    4300010: Box002
+    4300012: Box003
+    4300014: Base columna001
+    4300016: Base columna002
+    4300018: Cylinder001
+    4300020: Plane002
+    4300022: Columna001
+    4300024: Torus003
+    4300026: Torus004
+    4300028: Box004
+    4300030: Box005
+    4300032: Cylinder002
+    4300034: Plane003
+    4300036: Base columna003
+    4300038: Columna002
+    4300040: Torus005
+    4300042: Torus006
+    4300044: Box006
+    4300046: Box007
+    4300048: Cylinder003
+    4300050: Plane004
+    4300052: Base columna004
+    4300054: Columna003
+    4300056: Torus007
+    4300058: Torus008
+    4300060: Box008
+    4300062: Box009
+    4300064: Cylinder004
+    4300066: Plane005
+    4300068: Base columna005
+    4300070: Base columna006
+    4300072: Base columna007
+    4300074: Base columna008
+    4300076: Base columna009
+    4300078: Box010
+    4300080: Box011
+    4300082: Box012
+    4300084: Box013
+    4300086: Box014
+    4300088: Box015
+    4300090: Box016
+    4300092: Box017
+    4300094: Columna004
+    4300096: Columna005
+    4300098: Columna006
+    4300100: Columna007
+    4300102: Cylinder005
+    4300104: Cylinder006
+    4300106: Cylinder007
+    4300108: Cylinder008
+    4300110: Plane006
+    4300112: Plane007
+    4300114: Plane008
+    4300116: Plane009
+    4300118: Torus009
+    4300120: Torus010
+    4300122: Torus011
+    4300124: Torus012
+    4300126: Torus013
+    4300128: Torus014
+    4300130: Torus015
+    4300132: Torus016
+    9500000: //RootNode
+  materials:
+    importMaterials: 1
+    materialName: 0
+    materialSearch: 1
+  animations:
+    legacyGenerateAnimations: 4
+    bakeSimulation: 0
+    resampleCurves: 1
+    optimizeGameObjects: 0
+    motionNodeName: 
+    animationImportErrors: 
+    animationImportWarnings: 
+    animationRetargetingWarnings: 
+    animationDoRetargetingWarnings: 0
+    animationCompression: 1
+    animationRotationError: 0.5
+    animationPositionError: 0.5
+    animationScaleError: 0.5
+    animationWrapMode: 0
+    extraExposedTransformPaths: []
+    clipAnimations: []
+    isReadable: 1
+  meshes:
+    lODScreenPercentages: []
+    globalScale: 1
+    meshCompression: 0
+    addColliders: 0
+    importBlendShapes: 1
+    swapUVChannels: 0
+    generateSecondaryUV: 0
+    useFileUnits: 1
+    optimizeMeshForGPU: 1
+    keepQuads: 0
+    weldVertices: 1
+    secondaryUVAngleDistortion: 8
+    secondaryUVAreaDistortion: 15.000001
+    secondaryUVHardAngle: 88
+    secondaryUVPackMargin: 4
+    useFileScale: 1
+  tangentSpace:
+    normalSmoothAngle: 60
+    normalImportMode: 0
+    tangentImportMode: 3
+  importAnimation: 1
+  copyAvatar: 0
+  humanDescription:
+    serializedVersion: 2
+    human: []
+    skeleton: []
+    armTwist: 0.5
+    foreArmTwist: 0.5
+    upperLegTwist: 0.5
+    legTwist: 0.5
+    armStretch: 0.05
+    legStretch: 0.05
+    feetSpacing: 0
+    rootMotionBoneName: 
+    rootMotionBoneRotation: {x: 0, y: 0, z: 0, w: 1}
+    hasTranslationDoF: 0
+    hasExtraRoot: 0
+    skeletonHasParents: 1
+  lastHumanDescriptionAvatarSource: {instanceID: 0}
+  animationType: 2
+  humanoidOversampling: 1
+  additionalBone: 0
+  userData: 
+  assetBundleName: 
+  assetBundleVariant: 

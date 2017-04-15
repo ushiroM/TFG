@@ -19,6 +19,7 @@ public class CamaraPrimeraPersona : MonoBehaviour {
     private ConstruccionManager construccionManager;
     private Collider collider;
     private Quaternion targetRotation;
+    public GameObject canvas;
     // Use this for initialization
     void Start () {
         cambiar = false;
@@ -115,7 +116,7 @@ public class CamaraPrimeraPersona : MonoBehaviour {
             collider.enabled = false;
             cameraMovement.enabled = true;
             construccionMovimiento.enabled = true;
-            construccionManager.enabled = true;
+            canvas.SetActive(true);
             enabled = false;
         }
     }
