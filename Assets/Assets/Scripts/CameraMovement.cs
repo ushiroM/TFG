@@ -12,7 +12,6 @@ public class CameraMovement : MonoBehaviour {
     private bool cambiar;
     private CamaraPrimeraPersona pp;
     private ConstruccionMovimiento construccionMovimiento;
-    private ConstruccionManager construccionManager;
     private Collider collider;
     private GameObject canvas;
 
@@ -21,7 +20,6 @@ public class CameraMovement : MonoBehaviour {
         cambiar = false;
         pp = GetComponent<CamaraPrimeraPersona>();
         construccionMovimiento = GetComponentInChildren<ConstruccionMovimiento>();
-        construccionManager = GetComponentInChildren<ConstruccionManager>();
         collider = GetComponent<BoxCollider>();
         collider.enabled = false;
         canvas = GameObject.FindGameObjectWithTag("Canvas");

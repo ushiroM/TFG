@@ -20,7 +20,10 @@ public class GameManager : MonoBehaviour {
     private float Yiniciale;
     private float Yinicialt;
     private float Yiniciald;
-    public GameObject[] edificios;
+    public GameObject domus;
+    public GameObject arco;
+    public GameObject coliseo;
+    public GameObject acueducto;
     private ConstruccionMovimiento construccionMovimiento;
 
     void Start()
@@ -33,7 +36,11 @@ public class GameManager : MonoBehaviour {
         ocultarJuegos = false;
         ocultarDioses = false;
         ocultarMurallas = false;
-    construccionMovimiento = GameObject.FindGameObjectWithTag("Camara").GetComponentInChildren<ConstruccionMovimiento>();
+        Yinicialc = viviendas.transform.position.y;
+        Yiniciale = entretenimiento.transform.position.y;
+        Yiniciald = defensas.transform.position.y;
+        Yinicialt = templos.transform.position.y;
+        construccionMovimiento = GameObject.FindGameObjectWithTag("Camara").GetComponentInChildren<ConstruccionMovimiento>();
     }
     void Update()
     {
@@ -74,7 +81,6 @@ public class GameManager : MonoBehaviour {
                 defensas.transform.position = new Vector2(defensas.transform.position.x, Yiniciald);
             }
             viviendas.SetActive(true);
-            Yinicialc = viviendas.transform.position.y;
             mostrarCasas = true;
         }
         else
@@ -82,7 +88,7 @@ public class GameManager : MonoBehaviour {
     }
     private void mostrandoViviendas()
     {
-        if (viviendas.transform.position.y < Yinicialc + 105)
+        if (viviendas.transform.position.y < Yinicialc * 2.9)
             viviendas.transform.position = new Vector2(viviendas.transform.position.x, viviendas.transform.position.y + 5);
         else
             mostrarCasas = false;
@@ -117,7 +123,6 @@ public class GameManager : MonoBehaviour {
                 defensas.transform.position = new Vector2(defensas.transform.position.x, Yiniciald);
             }
             entretenimiento.SetActive(true);
-            Yiniciale = entretenimiento.transform.position.y;
             mostrarJuegos = true;
         }
         else
@@ -128,7 +133,7 @@ public class GameManager : MonoBehaviour {
     }
     private void mostrandoEntretenimiento()
     {
-        if (entretenimiento.transform.position.y < Yiniciale + 105)
+        if (entretenimiento.transform.position.y < Yiniciale * 2.9)
             entretenimiento.transform.position = new Vector2(entretenimiento.transform.position.x, entretenimiento.transform.position.y + 5);
         else
             mostrarJuegos = false;
@@ -163,7 +168,6 @@ public class GameManager : MonoBehaviour {
                 defensas.transform.position = new Vector2(defensas.transform.position.x, Yiniciald);
             }
             templos.SetActive(true);
-            Yinicialt = templos.transform.position.y;
             mostrarDioses = true;
         }
         else
@@ -171,7 +175,7 @@ public class GameManager : MonoBehaviour {
     }
     private void mostrandoTemplos()
     {
-        if (templos.transform.position.y < Yinicialt + 105)
+        if (templos.transform.position.y < Yinicialt * 2.9)
             templos.transform.position = new Vector2(templos.transform.position.x, templos.transform.position.y + 5);
         else
             mostrarDioses = false;
@@ -207,7 +211,6 @@ public class GameManager : MonoBehaviour {
                 templos.transform.position = new Vector2(templos.transform.position.x, Yinicialt);
             }
             defensas.SetActive(true);
-            Yiniciald = defensas.transform.position.y;
             mostrarMurallas = true;
         }
         else
@@ -215,7 +218,7 @@ public class GameManager : MonoBehaviour {
     }
     private void mostrandoDefensas()
     {
-        if (defensas.transform.position.y < Yiniciald + 105)
+        if (defensas.transform.position.y < Yiniciald * 2.9)
             defensas.transform.position = new Vector2(defensas.transform.position.x, defensas.transform.position.y + 5);
         else
             mostrarMurallas = false;
@@ -232,10 +235,18 @@ public class GameManager : MonoBehaviour {
     }
     public void spawnDomus()
     {
-       construccionMovimiento.SetItem(edificios[0]);
+       construccionMovimiento.SetItem(domus);
     }
     public void spawnArco()
     {
-       construccionMovimiento.SetItem(edificios[1]);
+       construccionMovimiento.SetItem(arco);
+    }
+    public void spawnColiseo()
+    {
+        construccionMovimiento.SetItem(coliseo);
+    }
+    public void spawnAcueducto()
+    {
+        construccionMovimiento.SetItem(acueducto);
     }
 }
