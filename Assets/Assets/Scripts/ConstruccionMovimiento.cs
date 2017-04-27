@@ -27,6 +27,14 @@ public class ConstruccionMovimiento : MonoBehaviour {
                     colocado = true;
                 }
             }
+            if(Input.GetAxis("Mouse ScrollWheel") > 0)
+            {
+               edificio.rotation = Quaternion.Lerp(edificio.rotation, edificio.rotation * Quaternion.AngleAxis(90, Vector3.up), 200 * 2f * Time.deltaTime);
+            }
+            if(Input.GetAxis("Mouse ScrollWheel") < 0)
+            {
+                edificio.rotation = Quaternion.Lerp(edificio.rotation, edificio.rotation * Quaternion.AngleAxis(-90, Vector3.up), 200 * 2f * Time.deltaTime);
+            }
 
         }
        
