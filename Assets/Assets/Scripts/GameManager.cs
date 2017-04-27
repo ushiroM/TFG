@@ -26,6 +26,7 @@ public class GameManager : MonoBehaviour {
     public GameObject acueducto;
     public GameObject circo;
     public GameObject teatro;
+    public GameObject foro;
     private ConstruccionMovimiento construccionMovimiento;
 
     void Start()
@@ -258,5 +259,9 @@ public class GameManager : MonoBehaviour {
     public void spawnTeatro()
     {
         construccionMovimiento.SetItem(teatro);
+    }
+    public void spawnForo()
+    {
+        construccionMovimiento.SetItem(foro);
     }
 }
