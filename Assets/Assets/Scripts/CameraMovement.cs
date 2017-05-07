@@ -14,6 +14,8 @@ public class CameraMovement : MonoBehaviour {
     private ConstruccionMovimiento construccionMovimiento;
     private Collider collider;
     private GameObject canvas;
+    private Transform límites;
+   
 
     void Start()
     {
@@ -23,6 +25,7 @@ public class CameraMovement : MonoBehaviour {
         collider = GetComponent<BoxCollider>();
         collider.enabled = false;
         canvas = GameObject.FindGameObjectWithTag("Canvas");
+        límites = GameObject.FindGameObjectWithTag("Límites").transform;
     }
 
     void Update()
@@ -50,17 +53,43 @@ public class CameraMovement : MonoBehaviour {
     }
     public void StartMovingForward(bool opposite)
     {
-        startMoving = true;
-
+        /*if (target.position.x < límites.GetChild(2).position.x && target.position.x > límites.GetChild(3).position.x && target.position.z < límites.GetChild(0).position.z && target.position.z > límites.GetChild(1).position.z)
+        {*/
         direction = (!opposite) ? target.forward : -target.forward;
         direction *= speed;
+        startMoving = true;
+        // }
+
+        /*if (!opposite) {
+            startMoving = true;
+            direction = target.forward;
+            direction *= speed;
+        }
+        else
+        {
+            startMoving = true;
+            direction = -target.forward;
+            direction *= speed;
+        }*/
+
     }
     public void StartMovingSides(bool opposite)
     {
         startMoving = true;
-
         direction = (!opposite) ? target.right : -target.right;
         direction *= speed;
+        /*if (!opposite)
+        {
+            startMoving = true;
+            direction = target.right;
+            direction *= speed;
+        }
+        else
+        {
+            startMoving = true;
+            direction = -target.right;
+            direction *= speed;
+        }*/
     }
     public void StopMoving()
     {
