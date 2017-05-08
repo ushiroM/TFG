@@ -15,7 +15,7 @@ public class CameraMovement : MonoBehaviour {
     private Collider collider;
     private GameObject canvas;
     private Transform límites;
-   
+    private Vector3 auxiliar;
 
     void Start()
     {
@@ -36,7 +36,11 @@ public class CameraMovement : MonoBehaviour {
         }
         else if (startMoving)
         {
-            target.position += direction;
+            auxiliar = target.position + direction;
+            if (auxiliar.x < límites.GetChild(2).position.x && auxiliar.x > límites.GetChild(3).position.x && auxiliar.z < límites.GetChild(0).position.z && auxiliar.z > límites.GetChild(1).position.z)
+            {
+                target.position += direction;
+            }
         }
         else
         {
@@ -53,43 +57,15 @@ public class CameraMovement : MonoBehaviour {
     }
     public void StartMovingForward(bool opposite)
     {
-        /*if (target.position.x < límites.GetChild(2).position.x && target.position.x > límites.GetChild(3).position.x && target.position.z < límites.GetChild(0).position.z && target.position.z > límites.GetChild(1).position.z)
-        {*/
         direction = (!opposite) ? target.forward : -target.forward;
         direction *= speed;
         startMoving = true;
-        // }
-
-        /*if (!opposite) {
-            startMoving = true;
-            direction = target.forward;
-            direction *= speed;
-        }
-        else
-        {
-            startMoving = true;
-            direction = -target.forward;
-            direction *= speed;
-        }*/
-
     }
     public void StartMovingSides(bool opposite)
     {
         startMoving = true;
         direction = (!opposite) ? target.right : -target.right;
         direction *= speed;
-        /*if (!opposite)
-        {
-            startMoving = true;
-            direction = target.right;
-            direction *= speed;
-        }
-        else
-        {
-            startMoving = true;
-            direction = -target.right;
-            direction *= speed;
-        }*/
     }
     public void StopMoving()
     {

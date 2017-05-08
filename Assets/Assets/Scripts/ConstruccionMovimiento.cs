@@ -4,7 +4,7 @@ using UnityEngine;
 
 public class ConstruccionMovimiento : MonoBehaviour {
 
-    private Transform edificio;
+    private GameObject edificio;
     private bool colocado;
     private EdificioColocable edificioColocable;
    
@@ -18,7 +18,7 @@ public class ConstruccionMovimiento : MonoBehaviour {
             Vector3 raton = Input.mousePosition;
             raton = new Vector3(raton.x, raton.y, transform.position.y);
             Vector3 p = GetComponent<Camera>().ScreenToWorldPoint(raton);
-            edificio.position = new Vector3(p.x,edificio.position.y,p.z);
+            edificio.transform.position = new Vector3(p.x,edificio.transform.position.y,p.z);
 
             if (Input.GetMouseButtonDown(0))
             {
@@ -27,13 +27,19 @@ public class ConstruccionMovimiento : MonoBehaviour {
                     colocado = true;
                 }
             }
+            if (Input.GetMouseButtonDown(1))
+            {
+                Destroy(edificio);
+                edificio = null;
+
+            }
             if(Input.GetAxis("Mouse ScrollWheel") > 0)
             {
-               edificio.rotation = Quaternion.Lerp(edificio.rotation, edificio.rotation * Quaternion.AngleAxis(90, Vector3.up), 200 * 2f * Time.deltaTime);
+               edificio.transform.rotation = Quaternion.Lerp(edificio.transform.rotation, edificio.transform.rotation * Quaternion.AngleAxis(90, Vector3.up), 200 * 2f * Time.deltaTime);
             }
             if(Input.GetAxis("Mouse ScrollWheel") < 0)
             {
-                edificio.rotation = Quaternion.Lerp(edificio.rotation, edificio.rotation * Quaternion.AngleAxis(-90, Vector3.up), 200 * 2f * Time.deltaTime);
+                edificio.transform.rotation = Quaternion.Lerp(edificio.transform.rotation, edificio.transform.rotation * Quaternion.AngleAxis(-90, Vector3.up), 200 * 2f * Time.deltaTime);
             }
 
         }
@@ -50,7 +56,7 @@ public class ConstruccionMovimiento : MonoBehaviour {
     public void SetItem(GameObject b)
     {
         colocado = false;
-        edificio = Instantiate(b).transform;
+        edificio = Instantiate(b);
         edificioColocable = edificio.GetComponent<EdificioColocable>();
     }
 }
