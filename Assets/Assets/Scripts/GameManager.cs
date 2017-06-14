@@ -27,6 +27,7 @@ public class GameManager : MonoBehaviour {
     public GameObject circo;
     public GameObject teatro;
     public GameObject foro;
+    public GameObject AcueductoTrozo;
     private ConstruccionMovimiento construccionMovimiento;
 
     void Start()

@@ -7,12 +7,24 @@ public class ConstruccionMovimiento : MonoBehaviour {
     private GameObject edificio;
     private bool colocado;
     private EdificioColocable edificioColocable;
-   
-    // Use this for initialization
+    private EdificioArrastrable edificioArrastrable;
+    private GameManager gameManager;
+    private bool arrastrando;
+    private bool dobleClick;
+    private bool destruyendo;
+    [HideInInspector]public List<GameObject> arrastrables;
+
+    void Start()
+    {
+        dobleClick = false;
+        arrastrando = false;
+        destruyendo = false;
+        gameManager = GameObject.FindGameObjectWithTag("Manager").GetComponent<GameManager>();
+    }
 
     // Update is called once per frame
     void Update () {
-        if(edificio != null && !colocado)
+        if(edificio != null && !colocado && !arrastrando)
         {
             edificioColocable = edificio.GetComponent<EdificioColocable>();
             Vector3 raton = Input.mousePosition;
@@ -24,7 +36,15 @@ public class ConstruccionMovimiento : MonoBehaviour {
             {
                 if (IsLegalPosition())
                 {
-                    colocado = true;
+                    if(edificio.name == "Acueducto(Clone)")
+                    {
+                        arrastrables.Add(edificio);
+                        arrastrando = true;
+                        colocado = true;
+                        ArrastrarEdificio();
+                    }
+                    else
+                        colocado = true;
                 }
             }
             if (Input.GetMouseButtonDown(1))
@@ -43,6 +63,11 @@ public class ConstruccionMovimiento : MonoBehaviour {
             }
 
         }
+        else  if(arrastrando == true)
+        {
+            dobleClick = true;
+            ArrastrarEdificio();
+        }
        
 	}
 
@@ -58,5 +83,44 @@ public class ConstruccionMovimiento : MonoBehaviour {
         colocado = false;
         edificio = Instantiate(b);
         edificioColocable = edificio.GetComponent<EdificioColocable>();
+    }
+
+    private void ArrastrarEdificio()
+    {
+        float xAnt;
+        float yAnt;
+        float zAnt;
+        float xSize = edificio.GetComponent<Collider>().bounds.size.x;
+        if(edificio.name == "Acueducto(Clone)" || edificio.name == "AcueductoTrozo(Clone)" && !destruyendo)
+        {
+            xAnt = edificio.transform.position.x;
+            yAnt = edificio.transform.position.y;
+            zAnt = edificio.transform.position.z;
+         
+            if(edificio.GetComponent<EdificioArrastrable>().salido == true){
+                edificio = Instantiate(gameManager.AcueductoTrozo);
+                arrastrables.Add(edificio);
+                edificio.transform.position = new Vector3(xAnt - xSize/2, yAnt, zAnt);
+                
+            }
+        }
+        if (dobleClick)
+        {
+            if (Input.GetMouseButtonDown(0))
+            {
+                arrastrando = false;
+                dobleClick = false;
+            }
+            else if (Input.GetMouseButtonDown(1))
+            {
+                foreach (var trozo in arrastrables)
+                {
+                    destruyendo = true;
+                    Destroy(trozo);
+                }
+                arrastrables.Clear();
+                arrastrando = false;
+            }
+        }
     }
 }
