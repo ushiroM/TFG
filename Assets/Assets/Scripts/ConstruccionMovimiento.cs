@@ -12,6 +12,7 @@ public class ConstruccionMovimiento : MonoBehaviour {
     private bool arrastrando;
     private bool dobleClick;
     private bool destruyendo;
+    private GameObject edificioPadre;
     [HideInInspector]public List<GameObject> arrastrables;
 
     void Start()
@@ -41,6 +42,8 @@ public class ConstruccionMovimiento : MonoBehaviour {
                         arrastrables.Add(edificio);
                         arrastrando = true;
                         colocado = true;
+                        edificioPadre = edificio;
+
                         ArrastrarEdificio();
                     }
                     else
@@ -87,23 +90,32 @@ public class ConstruccionMovimiento : MonoBehaviour {
 
     private void ArrastrarEdificio()
     {
-        float xAnt;
-        float yAnt;
-        float zAnt;
+        Transform Ant;
         float xSize = edificio.GetComponent<Collider>().bounds.size.x;
-        if(edificio.name == "Acueducto(Clone)" || edificio.name == "AcueductoTrozo(Clone)" && !destruyendo)
+
+        RaycastHit hit;
+        Vector3 rayDirection = edificio.transform.GetChild(2).position + edificio.transform.up;
+        Physics.Raycast(edificio.transform.position + edificio.transform.up, rayDirection.normalized, out hit);
+
+        if (edificio.name == "Acueducto(Clone)" || edificio.name == "AcueductoTrozo(Clone)" && !destruyendo)
         {
-            xAnt = edificio.transform.position.x;
-            yAnt = edificio.transform.position.y;
-            zAnt = edificio.transform.position.z;
-         
-            if(edificio.GetComponent<EdificioArrastrable>().salido == true){
+            Ant = edificio.transform;
+                              
+            if (edificio.GetComponent<EdificioArrastrable>().salido == true){
                 edificio = Instantiate(gameManager.AcueductoTrozo);
+                edificio.transform.parent = edificioPadre.transform;
+                edificio.transform.rotation = edificioPadre.transform.rotation;
                 arrastrables.Add(edificio);
-                edificio.transform.position = new Vector3(xAnt - xSize/2, yAnt, zAnt);
-                
+                edificio.transform.position = new Vector3(rayDirection.x, Ant.position.y, rayDirection.z);
+
             }
         }
+        Vector3 posraton = Input.mousePosition;
+        posraton.z = GetComponent<Camera>().transform.position.y - edificioPadre.transform.position.y;
+        Vector3 posratonmundo = GetComponent<Camera>().ScreenToWorldPoint(posraton);
+        float angulo = -Mathf.Atan2(edificioPadre.transform.position.z - posratonmundo.z, edificioPadre.transform.position.x - posratonmundo.x) * Mathf.Rad2Deg;
+        edificioPadre.transform.rotation = Quaternion.Slerp(edificioPadre.transform.rotation, Quaternion.Euler(0, angulo, 0), 8 * Time.deltaTime);
+
         if (dobleClick)
         {
             if (Input.GetMouseButtonDown(0))
