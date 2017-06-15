@@ -239,30 +239,37 @@ public class GameManager : MonoBehaviour {
     }
     public void spawnDomus()
     {
-       construccionMovimiento.SetItem(domus);
+        ocultarCasas = true;
+        construccionMovimiento.SetItem(domus);
     }
     public void spawnArco()
     {
-       construccionMovimiento.SetItem(arco);
+        ocultarDioses = true;
+        construccionMovimiento.SetItem(arco);
     }
     public void spawnColiseo()
     {
+        ocultarJuegos = true;
         construccionMovimiento.SetItem(coliseo);
     }
     public void spawnAcueducto()
     {
+        ocultarMurallas = true;
         construccionMovimiento.SetItem(acueducto);
     }
     public void spawnCirco()
     {
+        ocultarJuegos = true;
         construccionMovimiento.SetItem(circo);
     }
     public void spawnTeatro()
     {
+        ocultarJuegos = true;
         construccionMovimiento.SetItem(teatro);
     }
     public void spawnForo()
     {
+        ocultarDioses = true;
         construccionMovimiento.SetItem(foro);
     }
 }

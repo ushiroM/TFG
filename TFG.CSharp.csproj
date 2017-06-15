@@ -82,6 +82,7 @@
     <Compile Include="Assets\Assets\Scripts\EdificioArrastrable.cs" />
     <Compile Include="Assets\Assets\Scripts\EdificioColocable.cs" />
     <Compile Include="Assets\Assets\Scripts\GameManager.cs" />
+    <Compile Include="Assets\Assets\Scripts\TexturasTerreno.cs" />
   </ItemGroup>
   <Import Project="$(MSBuildExtensionsPath)\SyntaxTree\UnityVS\2015\UnityVS.CSharp.targets" />
 </Project>

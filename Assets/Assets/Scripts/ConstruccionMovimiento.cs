@@ -14,6 +14,7 @@ public class ConstruccionMovimiento : MonoBehaviour {
     private bool destruyendo;
     private GameObject edificioPadre;
     [HideInInspector]public List<GameObject> arrastrables;
+    private TexturasTerreno terreno;
 
     void Start()
     {
@@ -21,6 +22,7 @@ public class ConstruccionMovimiento : MonoBehaviour {
         arrastrando = false;
         destruyendo = false;
         gameManager = GameObject.FindGameObjectWithTag("Manager").GetComponent<GameManager>();
+        terreno = GameObject.FindGameObjectWithTag("Terrain").GetComponent<TexturasTerreno>();
     }
 
     // Update is called once per frame
@@ -37,7 +39,7 @@ public class ConstruccionMovimiento : MonoBehaviour {
             {
                 if (IsLegalPosition())
                 {
-                    if(edificio.name == "Acueducto(Clone)")
+                    if (edificio.name == "Acueducto(Clone)")
                     {
                         arrastrables.Add(edificio);
                         arrastrando = true;
@@ -47,7 +49,11 @@ public class ConstruccionMovimiento : MonoBehaviour {
                         ArrastrarEdificio();
                     }
                     else
+                    {
                         colocado = true;
+                        Vector3 posicion = new Vector3(edificio.transform.position.x, edificio.transform.position.y, edificio.transform.position.z);
+                        terreno.Pintar(edificio.GetComponent<Collider>().bounds.size *0.5f, posicion);
+                    }
                 }
             }
             if (Input.GetMouseButtonDown(1))
