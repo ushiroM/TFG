@@ -11,6 +11,8 @@ public class TexturasTerreno : MonoBehaviour {
     /// </summary>
     public Transform PaintPrefab;
 
+    private Renderer rend;
+
    // public Sprite PaintPrefab;
 
     private int MinSplashs = 5;
@@ -61,7 +63,7 @@ public class TexturasTerreno : MonoBehaviour {
 
         //int n = -1;
 
-        //int drops = 0; //Random.Range(MinSplashs, MaxSplashs);
+        //int drops = Random.Range(MinSplashs, MaxSplashs);
         RaycastHit hit;
 
         // Generate multiple decals in once
@@ -96,6 +98,10 @@ public class TexturasTerreno : MonoBehaviour {
                         paintSplatter.localScale.z
                     );*/
                     paintSplatter.localScale = tamaño;
+
+                    rend = paintSplatter.GetComponent<Renderer>();
+
+                    rend.material.mainTextureScale = new Vector2(5,5);
 
 
                     /* // Random rotation effect

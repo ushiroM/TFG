@@ -15,6 +15,7 @@ public class ConstruccionMovimiento : MonoBehaviour {
     private GameObject edificioPadre;
     [HideInInspector]public List<GameObject> arrastrables;
     private TexturasTerreno terreno;
+    Vector3 tamaño;
 
     void Start()
     {
@@ -52,7 +53,7 @@ public class ConstruccionMovimiento : MonoBehaviour {
                     {
                         colocado = true;
                         Vector3 posicion = new Vector3(edificio.transform.position.x, edificio.transform.position.y, edificio.transform.position.z);
-                        terreno.Pintar(edificio.GetComponent<Collider>().bounds.size *0.5f, posicion);
+                        terreno.Pintar(tamaño, posicion);
                     }
                 }
             }
@@ -92,6 +93,7 @@ public class ConstruccionMovimiento : MonoBehaviour {
         colocado = false;
         edificio = Instantiate(b);
         edificioColocable = edificio.GetComponent<EdificioColocable>();
+        tamaño = new Vector3(edificio.GetComponent<Collider>().bounds.size.x * 0.15f, edificio.GetComponent<Collider>().bounds.size.y, edificio.GetComponent<Collider>().bounds.size.z * 0.2f);
     }
 
     private void ArrastrarEdificio()
