@@ -6,7 +6,7 @@ public class CameraMovement : MonoBehaviour {
 
     public Transform target;
     public float speed = 1;
-    public bool startMoving;
+    [HideInInspector]public bool startMoving;
     Vector3 direction;
     private Vector3 posicionAerea;
     private bool cambiar;
@@ -16,16 +16,19 @@ public class CameraMovement : MonoBehaviour {
     private GameObject canvas;
     private Transform límites;
     private Vector3 auxiliar;
+    private Rigidbody rigidbody;
 
     void Start()
     {
         cambiar = false;
         pp = GetComponent<CamaraPrimeraPersona>();
         construccionMovimiento = GetComponentInChildren<ConstruccionMovimiento>();
-        collider = GetComponent<BoxCollider>();
+        collider = GetComponent<CapsuleCollider>();
         collider.enabled = false;
         canvas = GameObject.FindGameObjectWithTag("Canvas");
         límites = GameObject.FindGameObjectWithTag("Límites").transform;
+        rigidbody = gameObject.GetComponent<Rigidbody>();
+        rigidbody.useGravity = false;
     }
 
     void Update()
@@ -87,6 +90,7 @@ public class CameraMovement : MonoBehaviour {
             transform.position = new Vector3(transform.position.x, 0.5f, transform.position.z);
             cambiar = false;
             pp.enabled = true;
+            rigidbody.useGravity = true;
             collider.enabled = true;
             construccionMovimiento.enabled = false;
             canvas.SetActive(false);

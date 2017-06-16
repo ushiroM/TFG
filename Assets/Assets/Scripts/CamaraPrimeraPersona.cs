@@ -20,13 +20,15 @@ public class CamaraPrimeraPersona : MonoBehaviour {
     private Collider collider;
     private Quaternion targetRotation;
     public GameObject canvas;
+    private Rigidbody rigidbody;
     // Use this for initialization
     void Start () {
         cambiar = false;
         cameraMovement = GetComponent<CameraMovement>();
         construccionMovimiento = GetComponentInChildren<ConstruccionMovimiento>();
         construccionManager = GetComponentInChildren<ConstruccionManager>();
-        collider = GetComponent<BoxCollider>();
+        collider = GetComponent<CapsuleCollider>();
+        rigidbody = gameObject.GetComponent<Rigidbody>();
 	}
 	
 	// Update is called once per frame
@@ -114,6 +116,7 @@ public class CamaraPrimeraPersona : MonoBehaviour {
             transform.position = new Vector3(transform.position.x, 200, transform.position.z);
             cambiar = false;
             collider.enabled = false;
+            rigidbody.useGravity = false;
             cameraMovement.enabled = true;
             construccionMovimiento.enabled = true;
             canvas.SetActive(true);
