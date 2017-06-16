@@ -117,6 +117,7 @@ public class CamaraPrimeraPersona : MonoBehaviour {
             cambiar = false;
             collider.enabled = false;
             rigidbody.useGravity = false;
+            rigidbody.velocity = Vector3.zero;
             cameraMovement.enabled = true;
             construccionMovimiento.enabled = true;
             canvas.SetActive(true);
