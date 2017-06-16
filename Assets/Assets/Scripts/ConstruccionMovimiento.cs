@@ -16,6 +16,8 @@ public class ConstruccionMovimiento : MonoBehaviour {
     [HideInInspector]public List<GameObject> arrastrables;
     private TexturasTerreno terreno;
     Vector3 tamaño;
+    Vector3 posicion;
+    Vector2 tiles;
 
     void Start()
     {
@@ -52,8 +54,15 @@ public class ConstruccionMovimiento : MonoBehaviour {
                     else
                     {
                         colocado = true;
-                        Vector3 posicion = new Vector3(edificio.transform.position.x, edificio.transform.position.y, edificio.transform.position.z);
-                        terreno.Pintar(tamaño, posicion);
+                        if(edificio.name == "Anfiteatro(Clone)")
+                           posicion = new Vector3(edificio.transform.position.x, edificio.transform.position.y, edificio.transform.position.z + edificio.GetComponent<Collider>().bounds.size.z/2);
+                        else if (edificio.name == "Circo(Clone)")
+                            posicion = new Vector3(edificio.transform.position.x, edificio.transform.position.y, edificio.transform.position.z - edificio.GetComponent<Collider>().bounds.size.z/3);
+                        else if (edificio.name == "Teatro(Clone)")
+                            posicion = new Vector3(edificio.transform.position.x, edificio.transform.position.y, edificio.transform.position.z + edificio.GetComponent<Collider>().bounds.size.z/3f);
+                        else
+                           posicion = new Vector3(edificio.transform.position.x, edificio.transform.position.y, edificio.transform.position.z);
+                        terreno.Pintar(tamaño, posicion, tiles);
                     }
                 }
             }
@@ -93,7 +102,35 @@ public class ConstruccionMovimiento : MonoBehaviour {
         colocado = false;
         edificio = Instantiate(b);
         edificioColocable = edificio.GetComponent<EdificioColocable>();
-        tamaño = new Vector3(edificio.GetComponent<Collider>().bounds.size.x * 0.15f, edificio.GetComponent<Collider>().bounds.size.y, edificio.GetComponent<Collider>().bounds.size.z * 0.2f);
+        switch (edificio.name)
+        {
+            case "Domus(Clone)":
+                tiles = new Vector2(5,5);
+                tamaño = new Vector3(edificio.GetComponent<Collider>().bounds.size.x * 0.15f, edificio.GetComponent<Collider>().bounds.size.y, edificio.GetComponent<Collider>().bounds.size.z * 0.2f);
+                break;
+            case "Anfiteatro(Clone)":
+                tiles = new Vector2(19, 27);
+                tamaño = new Vector3(edificio.GetComponent<Collider>().bounds.size.x * 0.15f, edificio.GetComponent<Collider>().bounds.size.y, edificio.GetComponent<Collider>().bounds.size.z * 0.15f);
+                break;
+            case "Foro(Clone)":
+                tiles = new Vector2(19, 27);
+                tamaño = new Vector3(edificio.GetComponent<Collider>().bounds.size.x * 0.15f, edificio.GetComponent<Collider>().bounds.size.y, edificio.GetComponent<Collider>().bounds.size.z * 0.15f);
+                break;
+            case "Arco(Clone)":
+                tiles = new Vector2(5, 5);
+                tamaño = new Vector3(edificio.GetComponent<Collider>().bounds.size.x * 0.15f, edificio.GetComponent<Collider>().bounds.size.y, edificio.GetComponent<Collider>().bounds.size.z * 0.15f);
+                break;
+            case "Circo(Clone)":
+                tiles = new Vector2(35, 18);
+                tamaño = new Vector3(edificio.GetComponent<Collider>().bounds.size.x * 0.15f, edificio.GetComponent<Collider>().bounds.size.y, edificio.GetComponent<Collider>().bounds.size.z * 0.15f);
+                break;
+            case "Teatro(Clone)":
+                tiles = new Vector2(11, 12);
+                tamaño = new Vector3(edificio.GetComponent<Collider>().bounds.size.x * 0.15f, edificio.GetComponent<Collider>().bounds.size.y, edificio.GetComponent<Collider>().bounds.size.z * 0.15f);
+                break;
+
+        }
+       
     }
 
     private void ArrastrarEdificio()
