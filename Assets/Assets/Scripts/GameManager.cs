@@ -28,6 +28,10 @@ public class GameManager : MonoBehaviour {
     public GameObject teatro;
     public GameObject foro;
     public GameObject AcueductoTrozo;
+    public GameObject insulae;
+    public GameObject villa;
+    public GameObject puerta;
+    public GameObject muralla;
     private ConstruccionMovimiento construccionMovimiento;
 
     void Start()
@@ -242,6 +246,16 @@ public class GameManager : MonoBehaviour {
         ocultarCasas = true;
         construccionMovimiento.SetItem(domus);
     }
+    public void spawnInsulae()
+    {
+        ocultarCasas = true;
+        construccionMovimiento.SetItem(insulae);
+    }
+    public void spawnVilla()
+    {
+        ocultarCasas = true;
+        construccionMovimiento.SetItem(villa);
+    }
     public void spawnArco()
     {
         ocultarDioses = true;
@@ -254,7 +268,7 @@ public class GameManager : MonoBehaviour {
     }
     public void spawnAcueducto()
     {
-        ocultarMurallas = true;
+        ocultarDioses = true;
         construccionMovimiento.SetItem(acueducto);
     }
     public void spawnCirco()
@@ -271,5 +285,15 @@ public class GameManager : MonoBehaviour {
     {
         ocultarDioses = true;
         construccionMovimiento.SetItem(foro);
+    }
+    public void spawnPuerta()
+    {
+        ocultarMurallas = true;
+        construccionMovimiento.SetItem(puerta);
+    }
+    public void spawnMuralla()
+    {
+        ocultarMurallas = true;
+        construccionMovimiento.SetItem(muralla);
     }
 }

@@ -128,6 +128,14 @@ public class ConstruccionMovimiento : MonoBehaviour {
                 tiles = new Vector2(11, 12);
                 tamaño = new Vector3(edificio.GetComponent<Collider>().bounds.size.x * 0.15f, edificio.GetComponent<Collider>().bounds.size.y, edificio.GetComponent<Collider>().bounds.size.z * 0.15f);
                 break;
+            case "Insulae(Clone)":
+                tiles = new Vector2(4, 4);
+                tamaño = new Vector3(edificio.GetComponent<Collider>().bounds.size.x * 0.15f, edificio.GetComponent<Collider>().bounds.size.y, edificio.GetComponent<Collider>().bounds.size.z * 0.15f);
+                break;
+            case "Villa(Clone)":
+                tiles = new Vector2(7, 12);
+                tamaño = new Vector3(edificio.GetComponent<Collider>().bounds.size.x * 0.15f, edificio.GetComponent<Collider>().bounds.size.y, edificio.GetComponent<Collider>().bounds.size.z * 0.15f);
+                break;
 
         }
        
