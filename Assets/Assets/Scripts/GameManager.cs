@@ -32,6 +32,7 @@ public class GameManager : MonoBehaviour {
     public GameObject villa;
     public GameObject puerta;
     public GameObject muralla;
+    public GameObject MurallaTrozo;
     private ConstruccionMovimiento construccionMovimiento;
 
     void Start()

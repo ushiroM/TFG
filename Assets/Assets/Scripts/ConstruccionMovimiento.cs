@@ -42,7 +42,7 @@ public class ConstruccionMovimiento : MonoBehaviour {
             {
                 if (IsLegalPosition())
                 {
-                    if (edificio.name == "Acueducto(Clone)")
+                    if (edificio.name == "Acueducto(Clone)" || edificio.name == "Muralla(Clone)")
                     {
                         arrastrables.Add(edificio);
                         arrastrando = true;
@@ -156,6 +156,20 @@ public class ConstruccionMovimiento : MonoBehaviour {
                               
             if (edificio.GetComponent<EdificioArrastrable>().salido == true){
                 edificio = Instantiate(gameManager.AcueductoTrozo);
+                edificio.transform.parent = edificioPadre.transform;
+                edificio.transform.rotation = edificioPadre.transform.rotation;
+                arrastrables.Add(edificio);
+                edificio.transform.position = new Vector3(rayDirection.x, Ant.position.y, rayDirection.z);
+
+            }
+        }
+
+        else if (edificio.name == "Muralla(Clone)" || edificio.name == "MurallaTrozo(Clone)" && !destruyendo)
+        {
+            Ant = edificio.transform;
+            if (edificio.GetComponent<EdificioArrastrable>().salido == true)
+            {
+                edificio = Instantiate(gameManager.MurallaTrozo);
                 edificio.transform.parent = edificioPadre.transform;
                 edificio.transform.rotation = edificioPadre.transform.rotation;
                 arrastrables.Add(edificio);
