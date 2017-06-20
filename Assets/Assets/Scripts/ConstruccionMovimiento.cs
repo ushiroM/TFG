@@ -48,7 +48,6 @@ public class ConstruccionMovimiento : MonoBehaviour {
                         arrastrando = true;
                         colocado = true;
                         edificioPadre = edificio;
-
                         ArrastrarEdificio();
                     }
                     else
@@ -150,7 +149,7 @@ public class ConstruccionMovimiento : MonoBehaviour {
         Vector3 rayDirection = edificio.transform.GetChild(2).position + edificio.transform.up;
         Physics.Raycast(edificio.transform.position + edificio.transform.up, rayDirection.normalized, out hit);
 
-        if (edificio.name == "Acueducto(Clone)" || edificio.name == "AcueductoTrozo(Clone)" && !destruyendo)
+        if ((edificio.name == "Acueducto(Clone)" || edificio.name == "AcueductoTrozo(Clone)") && !destruyendo)
         {
             Ant = edificio.transform;
                               
@@ -164,16 +163,17 @@ public class ConstruccionMovimiento : MonoBehaviour {
             }
         }
 
-        else if (edificio.name == "Muralla(Clone)" || edificio.name == "MurallaTrozo(Clone)" && !destruyendo)
+        else if ((edificio.name == "Muralla(Clone)" || edificio.name == "MurallaTrozo(Clone)") && !destruyendo)
         {
-            Ant = edificio.transform;
+            Ant = edificioPadre.transform;
             if (edificio.GetComponent<EdificioArrastrable>().salido == true)
             {
                 edificio = Instantiate(gameManager.MurallaTrozo);
                 edificio.transform.parent = edificioPadre.transform;
                 edificio.transform.rotation = edificioPadre.transform.rotation;
                 arrastrables.Add(edificio);
-                edificio.transform.position = new Vector3(rayDirection.x, Ant.position.y, rayDirection.z);
+                edificio.transform.position = new Vector3(rayDirection.x, Ant.position.y - 0.35f, rayDirection.z);
+                edificio.transform.localScale = new Vector3(1, 1, 1);
 
             }
         }
