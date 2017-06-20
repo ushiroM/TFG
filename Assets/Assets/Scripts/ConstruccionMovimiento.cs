@@ -5,10 +5,11 @@ using UnityEngine;
 public class ConstruccionMovimiento : MonoBehaviour {
 
     private GameObject edificio;
-    private bool colocado;
+    [HideInInspector]public bool colocado;
     private EdificioColocable edificioColocable;
     private EdificioArrastrable edificioArrastrable;
     private GameManager gameManager;
+    private IAmanager iaManager;
     private bool arrastrando;
     private bool dobleClick;
     private bool destruyendo;
@@ -25,6 +26,7 @@ public class ConstruccionMovimiento : MonoBehaviour {
         arrastrando = false;
         destruyendo = false;
         gameManager = GameObject.FindGameObjectWithTag("Manager").GetComponent<GameManager>();
+        iaManager = GameObject.FindGameObjectWithTag("Manager").GetComponent<IAmanager>();
         terreno = GameObject.FindGameObjectWithTag("Terrain").GetComponent<TexturasTerreno>();
     }
 
@@ -53,6 +55,7 @@ public class ConstruccionMovimiento : MonoBehaviour {
                     else
                     {
                         colocado = true;
+                        colocados.Add(edificio);
                         if(edificio.name == "Anfiteatro(Clone)")
                            posicion = new Vector3(edificio.transform.position.x, edificio.transform.position.y, edificio.transform.position.z + edificio.GetComponent<Collider>().bounds.size.z/2);
                         else if (edificio.name == "Circo(Clone)")

@@ -296,5 +296,6 @@ public class GameManager : MonoBehaviour {
     {
         ocultarMurallas = true;
         construccionMovimiento.SetItem(muralla);
+
     }
 }
