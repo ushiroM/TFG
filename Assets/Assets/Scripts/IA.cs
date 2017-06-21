@@ -40,12 +40,9 @@ public class IA : MonoBehaviour {
     }
 	
 	void Update () {
-        Debug.Log(nav.destination);
         if (nuevoEdificio)
         {
             rand = Random.Range(0, iaManager.edificiosPublicos.Count -1);
-            Debug.Log(rand);
-            Debug.Log(iaManager.edificiosPublicos[rand].name);
             casa = iaManager.edificiosPublicos[rand];
             nuevoEdificio = false;
         }
@@ -70,7 +67,6 @@ public class IA : MonoBehaviour {
                 }
                 break;
             case "Anfiteatro(Clone)":
-                Debug.Log(casa.name);
                 if (contador == 0 || contador == vueltas)
                 {
                     vueltas = Random.Range(0, 4);
@@ -80,10 +76,7 @@ public class IA : MonoBehaviour {
 
                 if (!encontrado)
                 {
-                    Debug.Log("voy para el coliseo");
-                    nav.destination = casa.transform.position;
-                    Debug.Log(nav.destination);
-
+                    nav.destination = casa.transform.GetChild(0).position;
                 }
                 else
                 {
@@ -113,7 +106,7 @@ public class IA : MonoBehaviour {
     {
         nav.Stop();
         transform.LookAt(casa.transform);
-        yield return new WaitForSeconds(3f);
+        yield return new WaitForSeconds(15f);
         nav.Resume();
 
     }
