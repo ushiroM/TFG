@@ -14,7 +14,7 @@ public class PersonajeSpawn : MonoBehaviour {
     void Start()
     {
         spawn = true;
-        posicion = GameObject.FindGameObjectWithTag("Spawn").transform;
+        posicion = gameObject.transform.GetChild(0);
         construccionMovimiento = GameObject.FindGameObjectWithTag("MainCamera").GetComponent<ConstruccionMovimiento>();
     }
 	// Use this for initialization

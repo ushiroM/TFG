@@ -9,12 +9,5 @@ public class IAmanager : MonoBehaviour {
     [HideInInspector]public List<GameObject> patricios;
     [HideInInspector]public List<GameObject> legionarios;
 
-	void Start () {
-		
-	}
-	
-	// Update is called once per frame
-	void Update () {
-		
-	}
+
 }

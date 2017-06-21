@@ -15,6 +15,7 @@ public class ConstruccionMovimiento : MonoBehaviour {
     private bool destruyendo;
     private GameObject edificioPadre;
     [HideInInspector]public List<GameObject> arrastrables;
+    [HideInInspector]public List<GameObject> colocados;
     private TexturasTerreno terreno;
     Vector3 tamaño;
     Vector3 posicion;
