@@ -79,6 +79,7 @@
     <Compile Include="Assets\Assets\Scripts\CameraMovement.cs" />
     <Compile Include="Assets\Assets\Scripts\ConstruccionManager.cs" />
     <Compile Include="Assets\Assets\Scripts\ConstruccionMovimiento.cs" />
+    <Compile Include="Assets\Assets\Scripts\DesactivarTerreno.cs" />
     <Compile Include="Assets\Assets\Scripts\EdificioArrastrable.cs" />
     <Compile Include="Assets\Assets\Scripts\EdificioColocable.cs" />
     <Compile Include="Assets\Assets\Scripts\GameManager.cs" />

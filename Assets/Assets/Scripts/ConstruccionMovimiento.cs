@@ -56,7 +56,9 @@ public class ConstruccionMovimiento : MonoBehaviour {
                     else
                     {
                         colocado = true;
-                        colocados.Add(edificio);
+                        //colocados.Add(edificio);
+                        if(edificio.name == "Anfiteatro(Clone)" || edificio.name == "Circo(Clone)" || edificio.name == "Teatro(Clone)" || edificio.name == "Foro(Clone)" || edificio.name == "Arco(Clone)")
+                            iaManager.edificiosPublicos.Add(edificio);
                         if(edificio.name == "Anfiteatro(Clone)")
                            posicion = new Vector3(edificio.transform.position.x, edificio.transform.position.y, edificio.transform.position.z + edificio.GetComponent<Collider>().bounds.size.z/2);
                         else if (edificio.name == "Circo(Clone)")
@@ -65,7 +67,7 @@ public class ConstruccionMovimiento : MonoBehaviour {
                             posicion = new Vector3(edificio.transform.position.x, edificio.transform.position.y, edificio.transform.position.z + edificio.GetComponent<Collider>().bounds.size.z/3f);
                         else
                            posicion = new Vector3(edificio.transform.position.x, edificio.transform.position.y, edificio.transform.position.z);
-                        terreno.Pintar(tamaño, posicion, tiles);
+                        terreno.Pintar(tamaño, posicion, tiles, edificio);
                     }
                 }
             }

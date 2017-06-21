@@ -35,7 +35,7 @@ public class TexturasTerreno : MonoBehaviour {
         if (PaintPrefab == null) Debug.LogError("Missing Paint decal prefab!");
     }
 
-    public void Pintar(Vector3 tamaño, Vector3 posicion, Vector2 tiles)
+    public void Pintar(Vector3 tamaño, Vector3 posicion, Vector2 tiles, GameObject edificio)
     {
         // Check for a click
         /*if (Input.GetMouseButtonDown(0))
@@ -48,13 +48,13 @@ public class TexturasTerreno : MonoBehaviour {
             {
             // Paint!
             // Step back a little for a better effect (that's what "normal * x" is for)
-            Paint(hit.point + hit.normal * (SplashRange / 4f), tamaño, posicion, tiles);
+            Paint(hit.point + hit.normal * (SplashRange / 4f), tamaño, posicion, tiles, edificio);
            
             }
        // }
     }
 
-    public void Paint(Vector3 location, Vector3 tamaño, Vector3 posicion, Vector2 tiles)
+    public void Paint(Vector3 location, Vector3 tamaño, Vector3 posicion, Vector2 tiles, GameObject edificio)
     {
         //DEBUG
         mHitPoint = location;
@@ -102,6 +102,10 @@ public class TexturasTerreno : MonoBehaviour {
                     rend = paintSplatter.GetComponent<Renderer>();
 
                     rend.material.mainTextureScale = tiles;
+
+                    paintSplatter.SetParent(edificio.transform);
+
+                    
 
 
                     /* // Random rotation effect
