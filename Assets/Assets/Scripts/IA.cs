@@ -14,6 +14,7 @@ public class IA : MonoBehaviour {
     private IAmanager iaManager;
     private bool nuevoEdificio;
     private int rand;
+    private int casaDest;
     private int vueltas;
     private int contador;
 
@@ -28,77 +29,108 @@ public class IA : MonoBehaviour {
 	
     void OnTriggerEnter(Collider other)
     {
-        if (other.gameObject.name.Contains("Waypoint") && !encontrado)
+        if (casa != null)
         {
-            if (other.transform.parent.name == casa.name)
+            if (other.gameObject.name.Contains("Waypoint") && !encontrado)
             {
-                actual = other.gameObject;
-                nav.destination = other.gameObject.transform.position;
-                encontrado = true;
+                if (other.transform.parent.name == casa.name)
+                {
+                    actual = other.gameObject;
+                    nav.destination = other.gameObject.transform.position;
+                    encontrado = true;
+                }
             }
         }
     }
 	
 	void Update () {
-        if (nuevoEdificio)
+        if (iaManager.edificiosPublicos.Count > 0)
         {
-            rand = Random.Range(0, iaManager.edificiosPublicos.Count -1);
-            casa = iaManager.edificiosPublicos[rand];
-            nuevoEdificio = false;
-        }
+            if (nuevoEdificio)
+            {
+                casaDest = Random.Range(0, iaManager.edificiosPublicos.Count);
+                casa = iaManager.edificiosPublicos[casaDest];
+                nuevoEdificio = false;
+            }
 
-        switch (casa.name)
-        {
-            case "Foro(Clone)":
-                if(!encontrado)
-                {
-                    nav.destination = casa.transform.position;
-                     
-                }
-                else 
-                {
-                    if (nav.remainingDistance < 3)
+            switch (casa.name)
+            {
+                case "Foro(Clone)":
+                    if (!encontrado)
                     {
-                        rand = Random.Range(0, actual.GetComponent<WaypointManager>().hijos.Length);
-                        nav.destination = actual.GetComponent<WaypointManager>().hijos[rand].transform.position;
-                        actual = actual.GetComponent<WaypointManager>().hijos[rand];
+                        nav.destination = casa.transform.position;
+
+                    }
+                    else
+                    {
+                        if (nav.remainingDistance < 3)
+                        {
+                            rand = Random.Range(0, actual.GetComponent<WaypointManager>().hijos.Length);
+                            nav.destination = actual.GetComponent<WaypointManager>().hijos[rand].transform.position;
+                            actual = actual.GetComponent<WaypointManager>().hijos[rand];
+                        }
+
+                    }
+                    break;
+                case "Anfiteatro(Clone)":
+                    if (contador == 0 || contador == vueltas)
+                    {
+                        vueltas = Random.Range(0, 4);
+                        contador = 0;
                     }
 
-                }
-                break;
-            case "Anfiteatro(Clone)":
-                if (contador == 0 || contador == vueltas)
-                {
-                    vueltas = Random.Range(0, 4);
-                    contador = 0;
-                }
-                   
 
-                if (!encontrado)
-                {
-                    nav.destination = casa.transform.GetChild(0).position;
-                }
-                else
-                {
-                    if (nav.remainingDistance < 3)
+                    if (!encontrado)
                     {
-                        if(contador == vueltas)
-                            StartCoroutine("espera");
+                        nav.destination = casa.transform.GetChild(0).position;
+                    }
+                    else
+                    {
+                        if (nav.remainingDistance < 3)
+                        {
+                            if (contador == vueltas)
+                                StartCoroutine("espera");
 
-                        rand = Random.Range(0, actual.GetComponent<WaypointManager>().hijos.Length);
-                        nav.destination = actual.GetComponent<WaypointManager>().hijos[rand].transform.position;
-                        actual = actual.GetComponent<WaypointManager>().hijos[rand];
-                        contador++;
+                            rand = Random.Range(0, actual.GetComponent<WaypointManager>().hijos.Length);
+                            nav.destination = actual.GetComponent<WaypointManager>().hijos[rand].transform.position;
+                            actual = actual.GetComponent<WaypointManager>().hijos[rand];
+                            contador++;
+                        }
+
+                    }
+                    break;
+                case "Circo(Clone)":
+                    break;
+                case "Arco(Clone)":
+                    break;
+                case "Teatro(Clone)":
+                    if (contador == 0 || contador == vueltas)
+                    {
+                        vueltas = Random.Range(0, 4);
+                        contador = 0;
                     }
 
-                }
-                break;
-            case "Circo(Clone)":
-                break;
-            case "Arco(Clone)":
-                break;
-            case "Teatro(Clone)":
-                break;
+
+                    if (!encontrado)
+                    {
+                        nav.destination = casa.transform.GetChild(0).position;
+                    }
+                    else
+                    {
+                        if (nav.remainingDistance < 3)
+                        {
+                            if (contador == vueltas)
+                                StartCoroutine("espera");
+
+                            rand = Random.Range(0, actual.GetComponent<WaypointManager>().hijos.Length);
+                            nav.destination = actual.GetComponent<WaypointManager>().hijos[rand].transform.position;
+                            actual = actual.GetComponent<WaypointManager>().hijos[rand];
+                            contador++;
+                        }
+
+                    }
+                    break;
+            }
         }
     }
 

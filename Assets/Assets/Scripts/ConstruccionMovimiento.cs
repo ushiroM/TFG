@@ -15,7 +15,6 @@ public class ConstruccionMovimiento : MonoBehaviour {
     private bool destruyendo;
     private GameObject edificioPadre;
     [HideInInspector]public List<GameObject> arrastrables;
-    [HideInInspector]public List<GameObject> colocados;
     private TexturasTerreno terreno;
     Vector3 tamaño;
     Vector3 posicion;
@@ -56,7 +55,6 @@ public class ConstruccionMovimiento : MonoBehaviour {
                     else
                     {
                         colocado = true;
-                        //colocados.Add(edificio);
                         if(edificio.name == "Anfiteatro(Clone)" || edificio.name == "Circo(Clone)" || edificio.name == "Teatro(Clone)" || edificio.name == "Foro(Clone)" || edificio.name == "Arco(Clone)")
                             iaManager.edificiosPublicos.Add(edificio);
                         if(edificio.name == "Anfiteatro(Clone)")
