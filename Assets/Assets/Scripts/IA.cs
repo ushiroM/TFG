@@ -72,6 +72,7 @@ public class IA : MonoBehaviour {
 
                     }
                     break;
+
                 case "Anfiteatro(Clone)":
                     if (contador == 0 || contador == vueltas)
                     {
@@ -88,21 +89,74 @@ public class IA : MonoBehaviour {
                     {
                         if (nav.remainingDistance < 3)
                         {
+                            contador++;
                             if (contador == vueltas)
                                 StartCoroutine("espera");
 
                             rand = Random.Range(0, actual.GetComponent<WaypointManager>().hijos.Length);
                             nav.destination = actual.GetComponent<WaypointManager>().hijos[rand].transform.position;
                             actual = actual.GetComponent<WaypointManager>().hijos[rand];
-                            contador++;
                         }
 
                     }
                     break;
+
                 case "Circo(Clone)":
+                    if (contador == 0 || contador == vueltas)
+                    {
+                        vueltas = Random.Range(0, 4);
+                        contador = 0;
+                    }
+
+
+                    if (!encontrado)
+                    {
+                        nav.destination = casa.transform.GetChild(0).position;
+                    }
+                    else
+                    {
+                        if (nav.remainingDistance < 3)
+                        {
+                            contador++;
+                            if (contador == vueltas)
+                                StartCoroutine("espera");
+
+                            rand = Random.Range(0, actual.GetComponent<WaypointManager>().hijos.Length);
+                            nav.destination = actual.GetComponent<WaypointManager>().hijos[rand].transform.position;
+                            actual = actual.GetComponent<WaypointManager>().hijos[rand];
+                        }
+
+                    }
                     break;
+
                 case "Arco(Clone)":
+                    if (contador == 0 || contador == vueltas)
+                    {
+                        vueltas = Random.Range(0, 4);
+                        contador = 0;
+                    }
+
+
+                    if (!encontrado)
+                    {
+                        nav.destination = casa.transform.GetChild(0).position;
+                    }
+                    else
+                    {
+                        if (nav.remainingDistance < 3)
+                        {
+                            contador++;
+                            if (contador == vueltas)
+                                StartCoroutine("espera");
+
+                            rand = Random.Range(0, actual.GetComponent<WaypointManager>().hijos.Length);
+                            nav.destination = actual.GetComponent<WaypointManager>().hijos[rand].transform.position;
+                            actual = actual.GetComponent<WaypointManager>().hijos[rand];   
+                        }
+
+                    }
                     break;
+
                 case "Teatro(Clone)":
                     if (contador == 0 || contador == vueltas)
                     {
@@ -119,13 +173,13 @@ public class IA : MonoBehaviour {
                     {
                         if (nav.remainingDistance < 3)
                         {
+                            contador++;
                             if (contador == vueltas)
                                 StartCoroutine("espera");
 
                             rand = Random.Range(0, actual.GetComponent<WaypointManager>().hijos.Length);
                             nav.destination = actual.GetComponent<WaypointManager>().hijos[rand].transform.position;
                             actual = actual.GetComponent<WaypointManager>().hijos[rand];
-                            contador++;
                         }
 
                     }

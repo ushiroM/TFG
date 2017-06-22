@@ -79,10 +79,15 @@
     <Compile Include="Assets\Assets\Scripts\CameraMovement.cs" />
     <Compile Include="Assets\Assets\Scripts\ConstruccionManager.cs" />
     <Compile Include="Assets\Assets\Scripts\ConstruccionMovimiento.cs" />
+    <Compile Include="Assets\Assets\Scripts\DesactivarTerreno.cs" />
     <Compile Include="Assets\Assets\Scripts\EdificioArrastrable.cs" />
     <Compile Include="Assets\Assets\Scripts\EdificioColocable.cs" />
     <Compile Include="Assets\Assets\Scripts\GameManager.cs" />
+    <Compile Include="Assets\Assets\Scripts\IA.cs" />
+    <Compile Include="Assets\Assets\Scripts\IAmanager.cs" />
+    <Compile Include="Assets\Assets\Scripts\PersonajeSpawn.cs" />
     <Compile Include="Assets\Assets\Scripts\TexturasTerreno.cs" />
+    <Compile Include="Assets\Assets\Scripts\WaypointManager.cs" />
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
   <Target Name="GenerateTargetFrameworkMonikerAttribute" />
