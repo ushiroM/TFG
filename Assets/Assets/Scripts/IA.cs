@@ -13,6 +13,7 @@ public class IA : MonoBehaviour {
     private GameObject actual;
     private IAmanager iaManager;
     private bool nuevoEdificio;
+    private bool dentro;
     private int rand;
     private int casaDest;
     private int vueltas;
@@ -58,18 +59,50 @@ public class IA : MonoBehaviour {
                 case "Foro(Clone)":
                     if (!encontrado)
                     {
+                        dentro = false;
                         nav.destination = casa.transform.position;
-
                     }
-                    else
+                    else if(encontrado && !dentro)
                     {
                         if (nav.remainingDistance < 3)
-                        {
-                            rand = Random.Range(0, actual.GetComponent<WaypointManager>().hijos.Length);
-                            nav.destination = actual.GetComponent<WaypointManager>().hijos[rand].transform.position;
-                            actual = actual.GetComponent<WaypointManager>().hijos[rand];
+                        {    
+                            /*if(actual.name.Contains("Waypoint (6)"))
+                            {
+                                dentro = true;
+                                rand = Random.Range(0, iaManager.GetComponent<IAmanager>().interiorForo.Length);
+                                Debug.Log(rand);
+                                nav.destination = iaManager.GetComponent<IAmanager>().interiorForo[rand].transform.position;
+                                Debug.Log(iaManager.GetComponent<IAmanager>().interiorForo[rand].name);
+                                actual = iaManager.GetComponent<IAmanager>().interiorForo[rand];
+                            }
+                            else*/ if(actual.GetComponent<WaypointManager>().hijos.Length > 0){
+                                rand = Random.Range(0, actual.GetComponent<WaypointManager>().hijos.Length);
+                                nav.destination = actual.GetComponent<WaypointManager>().hijos[rand].transform.position;
+                                actual = actual.GetComponent<WaypointManager>().hijos[rand];
+                            }                          
                         }
 
+                    }
+                    else if (dentro)
+                    {
+                        if (contador == 0 || contador == vueltas)
+                        {
+                            vueltas = Random.Range(0, 4);
+                            contador = 0;
+                        }
+                        
+                        if (nav.remainingDistance < 3)
+                        {
+                            contador++;
+                            if (contador == vueltas)
+                                StartCoroutine("espera");
+
+                            rand = Random.Range(0, actual.GetComponent<WaypointManager>().hijos.Length);
+                            Debug.Log(rand);
+                            nav.destination = actual.GetComponent<WaypointManager>().hijos[rand].transform.position;
+                            Debug.Log(iaManager.GetComponent<IAmanager>().interiorForo[rand].name);
+                            actual = actual.GetComponent<WaypointManager>().hijos[rand];
+                        }
                     }
                     break;
 
