@@ -8,6 +8,4 @@ public class IAmanager : MonoBehaviour {
     [HideInInspector]public List<GameObject> esclavos;
     [HideInInspector]public List<GameObject> patricios;
     [HideInInspector]public List<GameObject> legionarios;
-
-
 }

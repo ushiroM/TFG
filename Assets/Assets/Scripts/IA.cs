@@ -66,16 +66,14 @@ public class IA : MonoBehaviour {
                     {
                         if (nav.remainingDistance < 3)
                         {    
-                            /*if(actual.name.Contains("Waypoint (6)"))
+                            if(actual.name.Contains("Waypoint (6)"))
                             {
                                 dentro = true;
-                                rand = Random.Range(0, iaManager.GetComponent<IAmanager>().interiorForo.Length);
-                                Debug.Log(rand);
-                                nav.destination = iaManager.GetComponent<IAmanager>().interiorForo[rand].transform.position;
-                                Debug.Log(iaManager.GetComponent<IAmanager>().interiorForo[rand].name);
-                                actual = iaManager.GetComponent<IAmanager>().interiorForo[rand];
+                                rand = Random.Range(0, 10);
+                                nav.destination = casa.transform.GetChild(rand).position;
+                                actual = casa.transform.GetChild(rand).gameObject;
                             }
-                            else*/ if(actual.GetComponent<WaypointManager>().hijos.Length > 0){
+                            else if(actual.GetComponent<WaypointManager>().hijos.Length > 0){
                                 rand = Random.Range(0, actual.GetComponent<WaypointManager>().hijos.Length);
                                 nav.destination = actual.GetComponent<WaypointManager>().hijos[rand].transform.position;
                                 actual = actual.GetComponent<WaypointManager>().hijos[rand];
@@ -98,9 +96,7 @@ public class IA : MonoBehaviour {
                                 StartCoroutine("espera");
 
                             rand = Random.Range(0, actual.GetComponent<WaypointManager>().hijos.Length);
-                            Debug.Log(rand);
                             nav.destination = actual.GetComponent<WaypointManager>().hijos[rand].transform.position;
-                            Debug.Log(iaManager.GetComponent<IAmanager>().interiorForo[rand].name);
                             actual = actual.GetComponent<WaypointManager>().hijos[rand];
                         }
                     }
