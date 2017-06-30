@@ -18,6 +18,7 @@ public class IA : MonoBehaviour {
     private int casaDest;
     private int vueltas;
     private int contador;
+    private Animator anim;
 
 	void Start () {
         contador = 0;
@@ -26,6 +27,7 @@ public class IA : MonoBehaviour {
         nav = GetComponent<NavMeshAgent>();
         construccionMovimiento = GameObject.FindGameObjectWithTag("MainCamera").GetComponent<ConstruccionMovimiento>();
         iaManager = GameObject.FindGameObjectWithTag("Manager").GetComponent<IAmanager>();
+        anim = GetComponent<Animator>();
     }
 	
     void OnTriggerEnter(Collider other)
@@ -49,6 +51,7 @@ public class IA : MonoBehaviour {
         {
             if (nuevoEdificio)
             {
+                anim.SetBool("Andando", true);
                 casaDest = Random.Range(0, iaManager.edificiosPublicos.Count);
                 casa = iaManager.edificiosPublicos[casaDest];
                 nuevoEdificio = false;
@@ -219,10 +222,12 @@ public class IA : MonoBehaviour {
 
     IEnumerator espera()
     {
+        anim.SetBool("Andando", false);
         nav.Stop();
         transform.LookAt(casa.transform);
         yield return new WaitForSeconds(15f);
         nav.Resume();
+        anim.SetBool("Andando", true);
 
     }
 }
