@@ -13,6 +13,7 @@ public class ConstruccionMovimiento : MonoBehaviour {
     private bool arrastrando;
     private bool dobleClick;
     private bool destruyendo;
+    private bool rotado;
     private GameObject edificioPadre;
     [HideInInspector]public List<GameObject> arrastrables;
     private TexturasTerreno terreno;
@@ -25,6 +26,7 @@ public class ConstruccionMovimiento : MonoBehaviour {
         dobleClick = false;
         arrastrando = false;
         destruyendo = false;
+        rotado = false;
         gameManager = GameObject.FindGameObjectWithTag("Manager").GetComponent<GameManager>();
         iaManager = GameObject.FindGameObjectWithTag("Manager").GetComponent<IAmanager>();
         terreno = GameObject.FindGameObjectWithTag("Terrain").GetComponent<TexturasTerreno>();
@@ -55,16 +57,22 @@ public class ConstruccionMovimiento : MonoBehaviour {
                     else
                     {
                         colocado = true;
+                        prepararPintar();
                         if(edificio.name == "Anfiteatro(Clone)" || edificio.name == "Circo(Clone)" || edificio.name == "Teatro(Clone)" || edificio.name == "Foro(Clone)" || edificio.name == "Arco(Clone)")
                             iaManager.edificiosPublicos.Add(edificio);
-                        if(edificio.name == "Anfiteatro(Clone)")
-                           posicion = new Vector3(edificio.transform.position.x, edificio.transform.position.y, edificio.transform.position.z + edificio.GetComponent<Collider>().bounds.size.z/2);
+                        if (edificio.name == "Anfiteatro(Clone)")
+                            posicion = new Vector3(edificio.transform.position.x, edificio.transform.position.y, edificio.transform.position.z + edificio.GetComponent<Collider>().bounds.size.z / 2);
                         else if (edificio.name == "Circo(Clone)")
-                            posicion = new Vector3(edificio.transform.position.x, edificio.transform.position.y, edificio.transform.position.z - edificio.GetComponent<Collider>().bounds.size.z/3);
+                        {
+                            if(!rotado)
+                                posicion = new Vector3(edificio.transform.position.x, edificio.transform.position.y, edificio.transform.position.z - edificio.GetComponent<Collider>().bounds.size.z / 3);
+                            else
+                                posicion = new Vector3(edificio.transform.position.x + edificio.GetComponent<Collider>().bounds.size.x / 3, edificio.transform.position.y, edificio.transform.position.z);
+                        }
                         else if (edificio.name == "Teatro(Clone)")
-                            posicion = new Vector3(edificio.transform.position.x, edificio.transform.position.y, edificio.transform.position.z + edificio.GetComponent<Collider>().bounds.size.z/3f);
+                            posicion = new Vector3(edificio.transform.position.x, edificio.transform.position.y, edificio.transform.position.z + edificio.GetComponent<Collider>().bounds.size.z / 3f);
                         else
-                           posicion = new Vector3(edificio.transform.position.x, edificio.transform.position.y, edificio.transform.position.z);
+                            posicion = new Vector3(edificio.transform.position.x, edificio.transform.position.y, edificio.transform.position.z);
                         terreno.Pintar(tamaño, posicion, tiles, edificio);
                     }
                 }
@@ -77,10 +85,18 @@ public class ConstruccionMovimiento : MonoBehaviour {
             }
             if(Input.GetAxis("Mouse ScrollWheel") > 0)
             {
+               if (!rotado)
+                   rotado = true;
+               else
+                   rotado = false;
                edificio.transform.rotation = Quaternion.Lerp(edificio.transform.rotation, edificio.transform.rotation * Quaternion.AngleAxis(90, Vector3.up), 200 * 2f * Time.deltaTime);
             }
             if(Input.GetAxis("Mouse ScrollWheel") < 0)
             {
+                if (!rotado)
+                    rotado = true;
+                else
+                    rotado = false;
                 edificio.transform.rotation = Quaternion.Lerp(edificio.transform.rotation, edificio.transform.rotation * Quaternion.AngleAxis(-90, Vector3.up), 200 * 2f * Time.deltaTime);
             }
 
@@ -105,11 +121,23 @@ public class ConstruccionMovimiento : MonoBehaviour {
         colocado = false;
         edificio = Instantiate(b);
         edificioColocable = edificio.GetComponent<EdificioColocable>();
+    }
+
+    private void prepararPintar()
+    {
         switch (edificio.name)
         {
             case "Domus(Clone)":
-                tiles = new Vector2(5,5);
-                tamaño = new Vector3(edificio.GetComponent<Collider>().bounds.size.x * 0.15f, edificio.GetComponent<Collider>().bounds.size.y, edificio.GetComponent<Collider>().bounds.size.z * 0.2f);
+                if (!rotado)
+                {
+                    tiles = new Vector2(5, 5);
+                    tamaño = new Vector3(edificio.GetComponent<Collider>().bounds.size.x * 0.15f, edificio.GetComponent<Collider>().bounds.size.y, edificio.GetComponent<Collider>().bounds.size.z * 0.2f);
+                }
+                else
+                {
+                    tiles = new Vector2(5, 5);
+                    tamaño = new Vector3(edificio.GetComponent<Collider>().bounds.size.x * 0.2f, edificio.GetComponent<Collider>().bounds.size.y, edificio.GetComponent<Collider>().bounds.size.z * 0.15f);
+                }
                 break;
             case "Anfiteatro(Clone)":
                 tiles = new Vector2(19, 27);
@@ -141,7 +169,6 @@ public class ConstruccionMovimiento : MonoBehaviour {
                 break;
 
         }
-       
     }
 
     private void ArrastrarEdificio()
