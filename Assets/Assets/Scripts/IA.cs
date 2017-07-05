@@ -14,7 +14,10 @@ public class IA : MonoBehaviour {
     private IAmanager iaManager;
     private bool nuevoEdificio;
     private bool dentro;
+    private bool paseando;
     private int rand;
+    private int cambioRandom;
+    private float tiempo;
     private int casaDest;
     private int vueltas;
     private int contador;
@@ -28,6 +31,7 @@ public class IA : MonoBehaviour {
         construccionMovimiento = GameObject.FindGameObjectWithTag("MainCamera").GetComponent<ConstruccionMovimiento>();
         iaManager = GameObject.FindGameObjectWithTag("Manager").GetComponent<IAmanager>();
         anim = GetComponent<Animator>();
+        tiempo = Random.Range(60, 121);
     }
 	
     void OnTriggerEnter(Collider other)
@@ -49,12 +53,25 @@ public class IA : MonoBehaviour {
 	void Update () {
         if (iaManager.edificiosPublicos.Count > 0)
         {
+           if(tiempo <= 0)
+               nuevoEdificio = true;
+
+           if (paseando)
+            {
+                tiempo -= Time.deltaTime;
+            }
+               
+
             if (nuevoEdificio)
             {
                 anim.SetBool("Andando", true);
+                tiempo = Random.Range(60, 121);
                 casaDest = Random.Range(0, iaManager.edificiosPublicos.Count);
                 casa = iaManager.edificiosPublicos[casaDest];
                 nuevoEdificio = false;
+                paseando = false;
+                dentro = false;
+                encontrado = false;
             }
 
             switch (casa.name)
@@ -68,7 +85,8 @@ public class IA : MonoBehaviour {
                     else if(encontrado && !dentro)
                     {
                         if (nav.remainingDistance < 3)
-                        {    
+                        {
+                            paseando = true;
                             if(actual.name.Contains("Waypoint (6)"))
                             {
                                 dentro = true;
@@ -121,6 +139,7 @@ public class IA : MonoBehaviour {
                     {
                         if (nav.remainingDistance < 3)
                         {
+                            paseando = true;
                             contador++;
                             if (contador == vueltas)
                                 StartCoroutine("espera");
@@ -149,6 +168,7 @@ public class IA : MonoBehaviour {
                     {
                         if (nav.remainingDistance < 3)
                         {
+                            paseando = true;
                             contador++;
                             if (contador == vueltas)
                                 StartCoroutine("espera");
@@ -177,6 +197,7 @@ public class IA : MonoBehaviour {
                     {
                         if (nav.remainingDistance < 3)
                         {
+                            paseando = true;
                             contador++;
                             if (contador == vueltas)
                                 StartCoroutine("espera");
@@ -205,6 +226,7 @@ public class IA : MonoBehaviour {
                     {
                         if (nav.remainingDistance < 3)
                         {
+                            paseando = true;
                             contador++;
                             if (contador == vueltas)
                                 StartCoroutine("espera");
@@ -226,8 +248,7 @@ public class IA : MonoBehaviour {
         nav.Stop();
         transform.LookAt(casa.transform);
         yield return new WaitForSeconds(15f);
-        nav.Resume();
         anim.SetBool("Andando", true);
-
+        nav.Resume();
     }
 }
