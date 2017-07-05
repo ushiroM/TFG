@@ -218,6 +218,20 @@ public class ConstruccionMovimiento : MonoBehaviour {
         {
             if (Input.GetMouseButtonDown(0))
             {
+                if(edificio.name == "Acueducto(Clone)" || edificio.name == "AcueductoTrozo(Clone)")
+                {
+                    Ant = edificio.transform;
+                    edificio = Instantiate(gameManager.acueducto);
+                    edificio.transform.parent = edificioPadre.transform;
+                    edificio.transform.rotation = edificioPadre.transform.rotation;
+                    arrastrables.Add(edificio);
+                    edificio.transform.position = new Vector3(rayDirection.x, Ant.position.y, rayDirection.z);
+
+                }
+                /*else if (edificio.name == "Muralla(Clone)" || edificio.name == "MurallaTrozo(Clone)")
+                {
+
+                }*/
                 arrastrando = false;
                 dobleClick = false;
             }

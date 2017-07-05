@@ -26,7 +26,7 @@ public class PersonajeSpawn : MonoBehaviour {
             spawn = false;
             for (int i = 0; i < 4; i++)
             {
-                random = Random.Range(1, 4);
+                random = Random.Range(1, 3);
                 if (random == 1)
                     Instantiate(hombre, posicion.position, Quaternion.identity);
                 else
