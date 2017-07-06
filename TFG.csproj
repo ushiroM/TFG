@@ -85,6 +85,7 @@
     <Compile Include="Assets\Assets\Scripts\GameManager.cs" />
     <Compile Include="Assets\Assets\Scripts\IA.cs" />
     <Compile Include="Assets\Assets\Scripts\IAmanager.cs" />
+    <Compile Include="Assets\Assets\Scripts\MurallaSpawn.cs" />
     <Compile Include="Assets\Assets\Scripts\PersonajeSpawn.cs" />
     <Compile Include="Assets\Assets\Scripts\TexturasTerreno.cs" />
     <Compile Include="Assets\Assets\Scripts\WaypointManager.cs" />

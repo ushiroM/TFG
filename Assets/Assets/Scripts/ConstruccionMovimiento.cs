@@ -224,16 +224,29 @@ public class ConstruccionMovimiento : MonoBehaviour {
                     edificio = Instantiate(gameManager.acueducto);
                     edificio.transform.parent = edificioPadre.transform;
                     edificio.transform.rotation = edificioPadre.transform.rotation;
+                    edificio.transform.localScale = new Vector3(-1, 1, 1);
                     arrastrables.Add(edificio);
                     edificio.transform.position = new Vector3(rayDirection.x, Ant.position.y, rayDirection.z);
 
                 }
-                /*else if (edificio.name == "Muralla(Clone)" || edificio.name == "MurallaTrozo(Clone)")
+                else if (edificio.name == "Muralla(Clone)" || edificio.name == "MurallaTrozo(Clone)")
                 {
+                    Ant = edificioPadre.transform;
+                    edificio = Instantiate(gameManager.muralla);
+                    edificio.transform.parent = edificioPadre.transform;
+                    edificio.transform.rotation = edificioPadre.transform.rotation;
+                   // arrastrables.Add(edificio);
+                    edificio.transform.position = new Vector3(rayDirection.x, Ant.position.y, rayDirection.z);
+                    edificio.transform.localScale = new Vector3(-1, 1, 1);
 
-                }*/
+                    foreach (var trozo in arrastrables)
+                    {
+                        trozo.GetComponent<MurallaSpawn>().apostarGuardias();
+                    }
+                }
                 arrastrando = false;
                 dobleClick = false;
+                arrastrables.Clear();
             }
             else if (Input.GetMouseButtonDown(1))
             {
