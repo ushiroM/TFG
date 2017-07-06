@@ -10,15 +10,21 @@ public class MurallaSpawn : MonoBehaviour {
     private Transform posicion;
     private GameObject instanciado;
 
-    void Start()
-    {
-        posicion = gameObject.transform.GetChild(0);
-      
-    }
-
     public void apostarGuardias()
     {
-       instanciado = Instantiate(guardia, posicion.position, Quaternion.identity);
+        posicion = gameObject.transform.GetChild(0);
+        instanciado = Instantiate(guardia, posicion.position, Quaternion.identity);
         instanciado.GetComponent<NavMeshAgent>().enabled = false;
     }
+
+    public void guardiasPuerta()
+    {
+        for (int i = 0; i < 4; i++)
+        {
+            instanciado = Instantiate(guardia, transform.GetChild(i).position, Quaternion.identity);
+            instanciado.GetComponent<NavMeshAgent>().enabled = false;
+        }
+        
+    }
+
 }

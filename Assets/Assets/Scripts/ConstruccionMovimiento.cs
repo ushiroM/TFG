@@ -57,23 +57,28 @@ public class ConstruccionMovimiento : MonoBehaviour {
                     else
                     {
                         colocado = true;
-                        prepararPintar();
-                        if(edificio.name == "Anfiteatro(Clone)" || edificio.name == "Circo(Clone)" || edificio.name == "Teatro(Clone)" || edificio.name == "Foro(Clone)" || edificio.name == "Arco(Clone)")
-                            iaManager.edificiosPublicos.Add(edificio);
-                        if (edificio.name == "Anfiteatro(Clone)")
-                            posicion = new Vector3(edificio.transform.position.x, edificio.transform.position.y, edificio.transform.position.z + edificio.GetComponent<Collider>().bounds.size.z / 2);
-                        else if (edificio.name == "Circo(Clone)")
+                        if (edificio.name != "Puerta(Clone)")
                         {
-                            if(!rotado)
-                                posicion = new Vector3(edificio.transform.position.x, edificio.transform.position.y, edificio.transform.position.z - edificio.GetComponent<Collider>().bounds.size.z / 3);
+                            prepararPintar();
+                            if (edificio.name == "Anfiteatro(Clone)" || edificio.name == "Circo(Clone)" || edificio.name == "Teatro(Clone)" || edificio.name == "Foro(Clone)" || edificio.name == "Arco(Clone)")
+                                iaManager.edificiosPublicos.Add(edificio);
+                            if (edificio.name == "Anfiteatro(Clone)")
+                                posicion = new Vector3(edificio.transform.position.x, edificio.transform.position.y, edificio.transform.position.z + edificio.GetComponent<Collider>().bounds.size.z / 2);
+                            else if (edificio.name == "Circo(Clone)")
+                            {
+                                if (!rotado)
+                                    posicion = new Vector3(edificio.transform.position.x, edificio.transform.position.y, edificio.transform.position.z - edificio.GetComponent<Collider>().bounds.size.z / 3);
+                                else
+                                    posicion = new Vector3(edificio.transform.position.x + edificio.GetComponent<Collider>().bounds.size.x / 3, edificio.transform.position.y, edificio.transform.position.z);
+                            }
+                            else if (edificio.name == "Teatro(Clone)")
+                                posicion = new Vector3(edificio.transform.position.x, edificio.transform.position.y, edificio.transform.position.z + edificio.GetComponent<Collider>().bounds.size.z / 3f);
                             else
-                                posicion = new Vector3(edificio.transform.position.x + edificio.GetComponent<Collider>().bounds.size.x / 3, edificio.transform.position.y, edificio.transform.position.z);
+                                posicion = new Vector3(edificio.transform.position.x, edificio.transform.position.y, edificio.transform.position.z);
+                            terreno.Pintar(tamaño, posicion, tiles, edificio);
                         }
-                        else if (edificio.name == "Teatro(Clone)")
-                            posicion = new Vector3(edificio.transform.position.x, edificio.transform.position.y, edificio.transform.position.z + edificio.GetComponent<Collider>().bounds.size.z / 3f);
                         else
-                            posicion = new Vector3(edificio.transform.position.x, edificio.transform.position.y, edificio.transform.position.z);
-                        terreno.Pintar(tamaño, posicion, tiles, edificio);
+                            edificio.GetComponent<MurallaSpawn>().guardiasPuerta();
                     }
                 }
             }

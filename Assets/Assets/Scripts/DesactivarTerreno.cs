@@ -16,7 +16,6 @@ public class DesactivarTerreno : MonoBehaviour {
     {
         if (c.tag == "Camara")
         {
-            Debug.Log("entro");
             terrain.GetComponent<Terrain>().enabled = false;
             
             transform.parent.GetChild(transform.parent.childCount - 1).gameObject.SetActive(false);
@@ -28,7 +27,6 @@ public class DesactivarTerreno : MonoBehaviour {
     {
         if (c.tag == "Camara")
         {
-            Debug.Log("salgo");
             terrain.GetComponent<Terrain>().enabled = true;
             transform.parent.GetChild(transform.parent.childCount - 1).gameObject.SetActive(true);
         }
