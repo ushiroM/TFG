@@ -236,12 +236,13 @@ public class ConstruccionMovimiento : MonoBehaviour {
                 }
                 else if (edificio.name == "Muralla(Clone)" || edificio.name == "MurallaTrozo(Clone)")
                 {
-                    Ant = edificioPadre.transform;
+                   /* Ant = edificioPadre.transform;
                     edificio = Instantiate(gameManager.muralla);
                     edificio.transform.parent = edificioPadre.transform;
                     edificio.transform.rotation = edificioPadre.transform.rotation;
                     edificio.transform.position = new Vector3(rayDirection.x, Ant.position.y, rayDirection.z);
-                    edificio.transform.localScale = new Vector3(-1, 1, 1);
+                    edificio.transform.localScale = new Vector3(-1, 1, 1);*/
+
 
                     foreach (var trozo in arrastrables)
                     {

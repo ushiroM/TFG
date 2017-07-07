@@ -93,10 +93,12 @@
     <Compile Include="Assets\Assets\Scripts\IAmanager.cs" />
     <Compile Include="Assets\Assets\Scripts\MurallaSpawn.cs" />
     <Compile Include="Assets\Assets\Scripts\PersonajeSpawn.cs" />
+    <Compile Include="Assets\Assets\Scripts\TextController.cs" />
     <Compile Include="Assets\Assets\Scripts\TexturasTerreno.cs" />
     <Compile Include="Assets\Assets\Scripts\WaypointManager.cs" />
   </ItemGroup>
   <ItemGroup>
+    <None Include="Assets\Assets\Fonts\spqr.txt" />
     <None Include="Assets\Standard Assets\Environment\Water (Basic)\Shaders\FXWaterBasic.shader" />
     <None Include="Assets\Standard Assets\Environment\Water\Water\Shaders\FXWaterPro.shader" />
     <None Include="Assets\Standard Assets\Environment\Water\Water4\Shaders\FXWater4Advanced.shader" />

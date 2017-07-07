@@ -120,7 +120,10 @@ public class CamaraPrimeraPersona : MonoBehaviour {
             rigidbody.velocity = Vector3.zero;
             cameraMovement.enabled = true;
             construccionMovimiento.enabled = true;
-            canvas.SetActive(true);
+            for (int i = 0; i <= 4; i++)
+            {
+                canvas.transform.GetChild(i).gameObject.SetActive(true);
+            }
             enabled = false;
         }
     }

@@ -93,7 +93,10 @@ public class CameraMovement : MonoBehaviour {
             rigidbody.useGravity = true;
             collider.enabled = true;
             construccionMovimiento.enabled = false;
-            canvas.SetActive(false);
+            for (int i = 0; i <= 4; i++)
+            {
+                canvas.transform.GetChild(i).gameObject.SetActive(false);
+            }
             enabled = false;
         }
       
