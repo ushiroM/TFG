@@ -240,7 +240,6 @@ public class ConstruccionMovimiento : MonoBehaviour {
                     edificio = Instantiate(gameManager.muralla);
                     edificio.transform.parent = edificioPadre.transform;
                     edificio.transform.rotation = edificioPadre.transform.rotation;
-                   // arrastrables.Add(edificio);
                     edificio.transform.position = new Vector3(rayDirection.x, Ant.position.y, rayDirection.z);
                     edificio.transform.localScale = new Vector3(-1, 1, 1);
 
