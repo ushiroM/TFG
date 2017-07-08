@@ -51,6 +51,7 @@ public class IA : MonoBehaviour {
     }
 	
 	void Update () {
+        Debug.Log(nav.destination);
         if (iaManager.edificiosPublicos.Count > 0)
         {
            if(tiempo <= 0)
