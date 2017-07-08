@@ -17,8 +17,9 @@ public class DesactivarTerreno : MonoBehaviour {
         if (c.tag == "Camara")
         {
             terrain.GetComponent<Terrain>().enabled = false;
-            
             transform.parent.GetChild(transform.parent.childCount - 1).gameObject.SetActive(false);
+            if(transform.parent.name.Contains("Domus"))
+                transform.parent.GetChild(transform.parent.childCount - 3).gameObject.SetActive(true);
         }
 
     }
@@ -29,6 +30,8 @@ public class DesactivarTerreno : MonoBehaviour {
         {
             terrain.GetComponent<Terrain>().enabled = true;
             transform.parent.GetChild(transform.parent.childCount - 1).gameObject.SetActive(true);
+            if (transform.parent.name.Contains("Domus"))
+                transform.parent.GetChild(transform.parent.childCount - 3).gameObject.SetActive(false);
         }
     }
 }
