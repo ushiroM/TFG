@@ -12,7 +12,7 @@ public class TextController : MonoBehaviour {
 
         pergamino = GameObject.FindGameObjectWithTag("Canvas").transform.GetChild(5).gameObject;
 
-        switch (transform.parent.parent.name)
+        /*switch (transform.parent.parent.name)
         {
             case "Villa(Clone)":
                 texto = pergamino.transform.GetChild(1).gameObject;
@@ -44,7 +44,37 @@ public class TextController : MonoBehaviour {
             case "Arco(Clone)":
                 texto = pergamino.transform.GetChild(9).gameObject;
                 break;
-        }
+        }*/
+
+        if (transform.parent.parent.name.Contains("Villa"))
+            texto = pergamino.transform.GetChild(1).gameObject;
+        
+        else if (transform.parent.parent.name.Contains("Domus"))
+            texto = pergamino.transform.GetChild(3).gameObject;
+
+        else if (transform.parent.parent.name.Contains("Insulae"))
+            texto = pergamino.transform.GetChild(2).gameObject;
+
+        else if (transform.parent.parent.name.Contains("Anfiteatro"))
+            texto = pergamino.transform.GetChild(5).gameObject;
+
+        else if (transform.parent.parent.name.Contains("Teatro"))
+            texto = pergamino.transform.GetChild(6).gameObject;
+
+        else if (transform.parent.parent.name.Contains("Circo"))
+            texto = pergamino.transform.GetChild(7).gameObject;
+
+        else if (transform.parent.parent.name.Contains("Acueducto"))
+            texto = pergamino.transform.GetChild(4).gameObject;
+
+        else if (transform.parent.parent.name.Contains("Puerta"))
+            texto = pergamino.transform.GetChild(8).gameObject;
+
+        else if (transform.parent.parent.name.Contains("Foro"))
+            texto = pergamino.transform.GetChild(0).gameObject;
+
+        else if(transform.parent.parent.name.Contains("Arco"))
+            texto = pergamino.transform.GetChild(9).gameObject;
     }
 
     void OnTriggerStay(Collider other)
