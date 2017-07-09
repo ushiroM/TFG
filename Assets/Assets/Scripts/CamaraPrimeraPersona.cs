@@ -21,6 +21,7 @@ public class CamaraPrimeraPersona : MonoBehaviour {
     private Quaternion targetRotation;
     public GameObject canvas;
     private Rigidbody rigidbody;
+    private AudioSource transicion;
     // Use this for initialization
     void Start () {
         cambiar = false;
@@ -29,6 +30,7 @@ public class CamaraPrimeraPersona : MonoBehaviour {
         construccionManager = GetComponentInChildren<ConstruccionManager>();
         collider = GetComponent<CapsuleCollider>();
         rigidbody = gameObject.GetComponent<Rigidbody>();
+        transicion = gameObject.GetComponent<AudioSource>();
 	}
 	
 	// Update is called once per frame
@@ -41,7 +43,7 @@ public class CamaraPrimeraPersona : MonoBehaviour {
             if (Input.GetKeyDown(KeyCode.V))
             {
                 targetRotation = transform.GetChild(0).rotation * Quaternion.AngleAxis(60, Vector3.right);
-              
+                transicion.Play();
                 cambiar = true;
                
             }

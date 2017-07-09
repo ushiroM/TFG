@@ -17,6 +17,7 @@ public class CameraMovement : MonoBehaviour {
     private Transform límites;
     private Vector3 auxiliar;
     private Rigidbody rigidbody;
+    private AudioSource transicion;
 
     void Start()
     {
@@ -29,6 +30,7 @@ public class CameraMovement : MonoBehaviour {
         límites = GameObject.FindGameObjectWithTag("Límites").transform;
         rigidbody = gameObject.GetComponent<Rigidbody>();
         rigidbody.useGravity = false;
+        transicion = gameObject.GetComponent<AudioSource>();
     }
 
     void Update()
@@ -54,6 +56,7 @@ public class CameraMovement : MonoBehaviour {
             }
             else if (Input.GetKeyDown(KeyCode.V))
             {
+                transicion.Play();
                 cambiar = true;
             }
         }
@@ -76,6 +79,7 @@ public class CameraMovement : MonoBehaviour {
     }
     public void cambiarPrimeraPersona()
     {
+       
         if (transform.position.y > 0)
         {
             if (transform.position.y < 80)
