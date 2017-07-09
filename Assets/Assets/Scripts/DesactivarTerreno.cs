@@ -1,7 +1,8 @@
 ﻿using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
-using UnityEditor.SceneManagement;
+using UnityEngine.SceneManagement;
+
 
 public class DesactivarTerreno : MonoBehaviour {
     private GameObject terrain;
@@ -11,14 +12,14 @@ public class DesactivarTerreno : MonoBehaviour {
     void Start()
     {
         terrain = GameObject.FindGameObjectWithTag("Terrain");
-        if (EditorSceneManager.GetActiveScene().name == "Ciudad")
+        if (SceneManager.GetActiveScene().name == "Ciudad")
             suelo = GameObject.FindGameObjectWithTag("Suelo");
     }
 
 
     public void OnTriggerEnter(Collider c)
     {
-        if(EditorSceneManager.GetActiveScene().name == "escena1")
+        if(SceneManager.GetActiveScene().name == "escena1")
         {
             if (c.tag == "Camara")
             {
@@ -44,7 +45,7 @@ public class DesactivarTerreno : MonoBehaviour {
 
     public void OnTriggerExit(Collider c)
     {
-        if (EditorSceneManager.GetActiveScene().name == "escena1")
+        if (SceneManager.GetActiveScene().name == "escena1")
         {
             if (c.tag == "Camara")
             {

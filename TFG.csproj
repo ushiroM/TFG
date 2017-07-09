@@ -91,6 +91,8 @@
     <Compile Include="Assets\Assets\Scripts\GameManager.cs" />
     <Compile Include="Assets\Assets\Scripts\IA.cs" />
     <Compile Include="Assets\Assets\Scripts\IAmanager.cs" />
+    <Compile Include="Assets\Assets\Scripts\Menu.cs" />
+    <Compile Include="Assets\Assets\Scripts\MenuPausa.cs" />
     <Compile Include="Assets\Assets\Scripts\MurallaSpawn.cs" />
     <Compile Include="Assets\Assets\Scripts\PersonajeSpawn.cs" />
     <Compile Include="Assets\Assets\Scripts\TextController.cs" />

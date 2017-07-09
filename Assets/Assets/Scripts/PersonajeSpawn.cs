@@ -1,7 +1,7 @@
 ﻿using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
-using UnityEditor.SceneManagement;
+using UnityEngine.SceneManagement;
 
 public class PersonajeSpawn : MonoBehaviour {
 
@@ -23,7 +23,7 @@ public class PersonajeSpawn : MonoBehaviour {
 	// Use this for initialization
 	void Update () {
 
-        if (EditorSceneManager.GetActiveScene().name == "escena1")
+        if (SceneManager.GetActiveScene().name == "escena1")
         {
             if (construccionMovimiento.colocado == true && spawn == true && iaManager.edificiosPublicos.Count > 0)
             {

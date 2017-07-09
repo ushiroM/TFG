@@ -1,8 +1,5 @@
-﻿using System.Collections;
-using System.Collections.Generic;
-using UnityEngine;
+﻿using UnityEngine;
 using UnityEngine.AI;
-using UnityEditor.SceneManagement;
 
 
 public class MurallaSpawn : MonoBehaviour {
@@ -13,14 +10,7 @@ public class MurallaSpawn : MonoBehaviour {
 
     private void Start()
     {
-        /*if(EditorSceneManager.GetActiveScene().name == "Ciudad")
-        {
-            if(transform.name.Contains("Puerta"))
-                guardiasPuerta();
-            else
-                apostarGuardias();
-        }*/
-
+     
     }
 
     public void apostarGuardias()
