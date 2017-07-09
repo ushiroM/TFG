@@ -51,7 +51,6 @@ public class IA : MonoBehaviour {
     }
 	
 	void Update () {
-        Debug.Log(nav.destination);
         if (iaManager.edificiosPublicos.Count > 0)
         {
            if(tiempo <= 0)
@@ -75,7 +74,171 @@ public class IA : MonoBehaviour {
                 encontrado = false;
             }
 
-            switch (casa.name)
+
+            if (casa.name.Contains("Foro"))
+            {
+                if (!encontrado)
+                {
+                    dentro = false;
+                    nav.destination = casa.transform.position;
+                }
+                else if (encontrado && !dentro)
+                {
+                    if (nav.remainingDistance < 3)
+                    {
+                        paseando = true;
+                        if (actual.name.Contains("Waypoint (6)"))
+                        {
+                            dentro = true;
+                            rand = Random.Range(0, 10);
+                            nav.destination = casa.transform.GetChild(rand).position;
+                            actual = casa.transform.GetChild(rand).gameObject;
+                        }
+                        else if (actual.GetComponent<WaypointManager>().hijos.Length > 0)
+                        {
+                            rand = Random.Range(0, actual.GetComponent<WaypointManager>().hijos.Length);
+                            nav.destination = actual.GetComponent<WaypointManager>().hijos[rand].transform.position;
+                            actual = actual.GetComponent<WaypointManager>().hijos[rand];
+                        }
+                    }
+
+                }
+                else if (dentro)
+                {
+                    if (contador == 0 || contador == vueltas)
+                    {
+                        vueltas = Random.Range(0, 4);
+                        contador = 0;
+                    }
+
+                    if (nav.remainingDistance < 3)
+                    {
+                        contador++;
+                        if (contador == vueltas)
+                            StartCoroutine("espera");
+
+                        rand = Random.Range(0, actual.GetComponent<WaypointManager>().hijos.Length);
+                        nav.destination = actual.GetComponent<WaypointManager>().hijos[rand].transform.position;
+                        actual = actual.GetComponent<WaypointManager>().hijos[rand];
+                    }
+                }
+            }
+            else if (casa.name.Contains("Anfiteatro"))
+            {
+                if (contador == 0 || contador == vueltas)
+                {
+                    vueltas = Random.Range(0, 4);
+                    contador = 0;
+                }
+
+
+                if (!encontrado)
+                {
+                    nav.destination = casa.transform.GetChild(0).position;
+                }
+                else
+                {
+                    if (nav.remainingDistance < 3)
+                    {
+                        paseando = true;
+                        contador++;
+                        if (contador == vueltas)
+                            StartCoroutine("espera");
+
+                        rand = Random.Range(0, actual.GetComponent<WaypointManager>().hijos.Length);
+                        nav.destination = actual.GetComponent<WaypointManager>().hijos[rand].transform.position;
+                        actual = actual.GetComponent<WaypointManager>().hijos[rand];
+                    }
+
+                }
+            }
+            else if (casa.name.Contains("Circo")) {
+                if (contador == 0 || contador == vueltas)
+                {
+                    vueltas = Random.Range(0, 4);
+                    contador = 0;
+                }
+
+
+                if (!encontrado)
+                {
+                    nav.destination = casa.transform.GetChild(0).position;
+                }
+                else
+                {
+                    if (nav.remainingDistance < 3)
+                    {
+                        paseando = true;
+                        contador++;
+                        if (contador == vueltas)
+                            StartCoroutine("espera");
+
+                        rand = Random.Range(0, actual.GetComponent<WaypointManager>().hijos.Length);
+                        nav.destination = actual.GetComponent<WaypointManager>().hijos[rand].transform.position;
+                        actual = actual.GetComponent<WaypointManager>().hijos[rand];
+                    }
+
+                }
+            }
+            else if (casa.name.Contains("Arco"))
+            {
+                if (contador == 0 || contador == vueltas)
+                {
+                    vueltas = Random.Range(0, 4);
+                    contador = 0;
+                }
+
+
+                if (!encontrado)
+                {
+                    nav.destination = casa.transform.GetChild(0).position;
+                }
+                else
+                {
+                    if (nav.remainingDistance < 3)
+                    {
+                        paseando = true;
+                        contador++;
+                        if (contador == vueltas)
+                            StartCoroutine("espera");
+
+                        rand = Random.Range(0, actual.GetComponent<WaypointManager>().hijos.Length);
+                        nav.destination = actual.GetComponent<WaypointManager>().hijos[rand].transform.position;
+                        actual = actual.GetComponent<WaypointManager>().hijos[rand];
+                    }
+
+                }
+            }
+            else if (casa.name.Contains("Teatro")) {
+                if (contador == 0 || contador == vueltas)
+                {
+                    vueltas = Random.Range(0, 4);
+                    contador = 0;
+                }
+
+
+                if (!encontrado)
+                {
+                    nav.destination = casa.transform.GetChild(0).position;
+                }
+                else
+                {
+                    if (nav.remainingDistance < 3)
+                    {
+                        paseando = true;
+                        contador++;
+                        if (contador == vueltas)
+                            StartCoroutine("espera");
+
+                        rand = Random.Range(0, actual.GetComponent<WaypointManager>().hijos.Length);
+                        nav.destination = actual.GetComponent<WaypointManager>().hijos[rand].transform.position;
+                        actual = actual.GetComponent<WaypointManager>().hijos[rand];
+                    }
+
+                }
+            }
+
+            /*switch (casa.name)
             {
                 case "Foro(Clone)":
                     if (!encontrado)
@@ -239,7 +402,7 @@ public class IA : MonoBehaviour {
 
                     }
                     break;
-            }
+            }*/
         }
     }
 

@@ -38,7 +38,7 @@ public class PersonajeSpawn : MonoBehaviour {
                 }
             }
         }
-        else
+        /*else
         {
             if (spawn == true && iaManager.edificiosPublicos.Count > 0)
             {
@@ -52,7 +52,7 @@ public class PersonajeSpawn : MonoBehaviour {
                         Instantiate(mujer, posicion.position, Quaternion.identity);
                 }
             }
-        }
+        }*/
 
 	}
 }

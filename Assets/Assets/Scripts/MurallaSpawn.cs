@@ -13,7 +13,7 @@ public class MurallaSpawn : MonoBehaviour {
 
     private void Start()
     {
-       /* if(EditorSceneManager.GetActiveScene().name == "Ciudad")
+        /*if(EditorSceneManager.GetActiveScene().name == "Ciudad")
         {
             if(transform.name.Contains("Puerta"))
                 guardiasPuerta();

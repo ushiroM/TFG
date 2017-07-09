@@ -6,12 +6,13 @@ public class TextController : MonoBehaviour {
 
     private GameObject pergamino;
     private GameObject texto;
-
+    private GameObject boton;
     void Start()
     {
 
-        pergamino = GameObject.FindGameObjectWithTag("Canvas").transform.GetChild(5).gameObject;
+        pergamino = GameObject.FindGameObjectWithTag("Canvas").transform.GetChild(6).gameObject;
 
+        boton = GameObject.FindGameObjectWithTag("Canvas").transform.GetChild(5).gameObject;
         /*switch (transform.parent.parent.name)
         {
             case "Villa(Clone)":
@@ -78,11 +79,15 @@ public class TextController : MonoBehaviour {
     }
 
     void OnTriggerStay(Collider other)
-    {
-        if(other.tag == "Camara" && Input.GetKeyDown(KeyCode.E))
+    {  
+        if(other.tag == "Camara")
         {
-            pergamino.SetActive(true);
-            texto.SetActive(true);
+            boton.SetActive(true);
+            if (Input.GetKeyDown(KeyCode.E)) {
+                boton.SetActive(false);
+                pergamino.SetActive(true);
+                texto.SetActive(true);
+            }
         } 
     }
 
@@ -90,6 +95,7 @@ public class TextController : MonoBehaviour {
     {
         if(other.tag == "Camara")
         {
+            boton.SetActive(false);
             pergamino.SetActive(false);
             texto.SetActive(false);
         }
