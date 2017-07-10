@@ -34,7 +34,7 @@ public class IA : MonoBehaviour {
         tiempo = Random.Range(60, 121);
     }
 	
-    void OnTriggerEnter(Collider other)
+    void OnTriggerStay(Collider other)
     {
         if (casa != null)
         {
